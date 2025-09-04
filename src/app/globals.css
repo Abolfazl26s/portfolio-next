@@ -3,7 +3,7 @@
 /* Enable dark mode variant */
 @custom-variant light (&:where(:not(.dark), :not(.dark *)));
 /* Enable light mode variant */
-@tailwind utilities;
+
 
 
 :root {
