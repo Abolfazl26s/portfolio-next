@@ -1,26 +1,65 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+/* Enable dark mode variant */
+@custom-variant light (&:where(:not(.dark), :not(.dark *)));
+/* Enable light mode variant */
+@tailwind utilities;
+
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+    /* --- رنگ‌های پایه - حالت روز --- */
+    --background: #f8fafc;
+    /* پس‌زمینه اصلی (Slate 50) */
+    --foreground: #0f172a;
+    /* متن اصلی (Slate 900) */
+
+    /* --- رنگ‌های کارت و بخش‌ها --- */
+    --card-background: #ffffff;
+    /* پس‌زمینه کارت‌ها (سفید) */
+    --card-foreground: #0f172a;
+    /* متن روی کارت‌ها (Slate 900) */
+
+    /* --- رنگ اصلی و تعاملی --- */
+    --primary: #14b8a6;
+    /* رنگ اصلی گیرا (Teal 500) */
+    --primary-foreground: #f8fafc;
+    /* متن روی دکمه‌های اصلی (Slate 50) */
+
+    /* --- رنگ‌های فرعی --- */
+    --secondary: #64748b;
+    /* متن ثانویه (Slate 500) */
+    --border: #e2e8f0;
+    /* خطوط جداکننده (Slate 200) */
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+[data-theme="dark"] {
+    /* --- رنگ‌های پایه - حالت شب --- */
+    --background: #0f172a;
+    /* پس‌زمینه اصلی (Slate 900) */
+    --foreground: #e2e8f0;
+    /* متن اصلی (Slate 200) */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+    /* --- رنگ‌های کارت و بخش‌ها --- */
+    --card-background: #1e293b;
+    /* پس‌زمینه کارت‌ها (Slate 800) */
+    --card-foreground: #e2e8f0;
+    /* متن روی کارت‌ها (Slate 200) */
+
+    /* --- رنگ اصلی و تعاملی --- */
+    --primary: #2dd4bf;
+    /* رنگ اصلی روشن‌تر (Teal 400) */
+    --primary-foreground: #0f172a;
+    /* متن روی دکمه‌های اصلی (Slate 900) */
+
+    /* --- رنگ‌های فرعی --- */
+    --secondary: #94a3b8;
+    /* متن ثانویه (Slate 400) */
+    --border: #334155;
+    /* خطوط جداکننده (Slate 700) */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    transition: background-color 0.3s, color 0.3s;
 }
