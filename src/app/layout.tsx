@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
+
 import { Providers } from "./providers";
+// import { NextIntlClientProvider } from "next-intl";
+// import { getMessages } from "next-intl/server";
+import type { Locale } from "../types";
+import Navbar from "./components/shared/Navbar";
+import Middlenav from "./components/shared/Middlenav";
+import HeroSection from "./components/HeroSection";
+import type { ProfileData } from "@/types";
+import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,15 +18,45 @@ export const metadata: Metadata = {
   description: "My Portfolio",
 };
 
-export default function RootLayout({
+// این داده‌ها می‌تواند از یک API یا CMS خوانده شود
+const sampleProfileData: ProfileData = {
+  name: " Abolfazl Saeidabadi",
+  title: " Frontend Developer",
+  email: "asaeidabadi243@gmail.com",
+  imageUrl: "/images/profile.avif",
+  cvUrl: "/path/to/your-cv.pdf", // مسیر فایل رزومه خود را قرار دهید
+};
+export default async function RootLayout({
   children,
-}: Readonly<{
+  params: { locale },
+}: {
   children: React.ReactNode;
-}>) {
+  params: { locale: Locale }; // استفاده از تایپ
+}) {
+  // const messages = await getMessages();
+
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <Providers>{children}</Providers>
+    <html
+      lang={locale}
+      dir={locale === "fa" ? "rtl" : "ltr"}
+      suppressHydrationWarning
+      className={inter.className}
+    >
+      <body className="bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+        {/* <NextIntlClientProvider locale={locale} > */}
+        <Providers>
+          <Navbar />
+          <Middlenav />
+
+          <main className="flex justify-around items-start text-[var(--primary)] dark:text-[var(--primary)] dark:bg-[var(--background)] bg-[var(--background)] min-h-screen">
+            <HeroSection profileData={sampleProfileData} />
+            <div className="basis-2/3 border-2 border-primary rounded-lg p-4 m-4">
+              {children}
+            </div>
+          </main>
+        </Providers>
+
+        {/* </NextIntlClientProvider> */}
       </body>
     </html>
   );
