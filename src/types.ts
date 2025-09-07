@@ -19,3 +19,16 @@ export type CareerItem = {
   EndDateOfCooperation_en: string;
   logoSrc: string; // مسیر لوگوی شرکت
 };
+export interface Project {
+  id: number | string;
+  imgSrc: string;
+  name_en: string;
+  link: string;
+  time_en: string;
+}
+export interface ShapeMonitorProps {
+  imgSrc: string;
+  projectName: string;
+  time: string;
+  link: string;
+}

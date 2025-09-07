@@ -1,0 +1,77 @@
+.shapeMonitor {
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    position: relative;
+    margin-bottom: 50px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    transition: all 0.5s ease-in-out;
+    cursor: pointer;
+}
+
+.shapeMonitor:hover img {
+    filter: blur(0);
+}
+
+.shapeMonitor img {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 28px);
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    object-fit: fill;
+    z-index: 2;
+    border-radius: 10px 10px 0 0;
+    filter: blur(1px) brightness(70%);
+}
+
+.shapeMonitor .specker {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background-color: #ccc;
+    z-index: 2;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.shapeMonitor .specker::after {
+    position: absolute;
+    content: '';
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #333;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.shapeMonitor::after {
+    position: absolute;
+    bottom: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    content: '';
+    background-color: #ccc;
+    width: 60px;
+    height: 90px;
+    z-index: 1;
+}
+
+.shapeMonitor::before {
+    position: absolute;
+    content: '';
+    bottom: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #ccc;
+    z-index: 3;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}

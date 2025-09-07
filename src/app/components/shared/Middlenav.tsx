@@ -12,7 +12,7 @@ const navigation = [
 
 export default function Middlenav() {
   const pathName = usePathname();
-  console.log(pathName);
+  
   return (
     <div className="flex items-center justify-center w-full h-30 text-[var(--primary)] dark:text-[var(--primary)] dark:bg-[var(--background)] bg-[var(--background)] ">
       <div className="flex basis-1/3"></div>
@@ -23,7 +23,7 @@ export default function Middlenav() {
             href={item.href}
             className={` ${
               pathName === item.href ? "active" : ""
-            } flex items-center justify-center px-8 py-4 text-sm font-medium text-gray-900 bg-white rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white`}
+            } flex items-center justify-center px-8 py-4 text-sm font-medium text-gray-900 bg-white rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white hover:scale-105 transition-transform duration-300`}
           >
             <item.icon className="w-4 h-4 mr-2" />
             {item.name}
