@@ -32,3 +32,7 @@ export interface ShapeMonitorProps {
   time: string;
   link: string;
 }
+export interface Skill {
+  name_en: string;
+  levelOfSkill: number;
+}

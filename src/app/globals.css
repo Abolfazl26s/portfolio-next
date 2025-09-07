@@ -32,6 +32,12 @@
     --imgSize: 180px;
     --imgRadius: 50%;
     --colorBorder: #888;
+
+
+    --liquid-color: #3498db;
+        /* رنگ پیش‌فرض مایع (آبی) */
+        --wave-color-1: rgba(255, 255, 255, 0.7);
+        --wave-color-2: rgba(255, 255, 255, 0.4);
 }
 
 html.dark {
@@ -57,6 +63,12 @@ html.dark {
     --secondary: #94a3b8;
     /* متن ثانویه (Slate 400) */
     --border: #334155;
+
+
+    --liquid-color: #4299e1;
+        /* آبی روشن‌تر برای حالت تاریک */
+        --wave-color-1: rgba(26, 32, 44, 0.7);
+        --wave-color-2: rgba(26, 32, 44, 0.4);
 }
 
 body {
@@ -269,3 +281,20 @@ a.active {
         inset-inline-end: -25% !important;
     }
 }
+
+
+
+/* Custom CSS for animation */
+/* .water {
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+} */
