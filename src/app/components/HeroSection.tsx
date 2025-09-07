@@ -12,7 +12,7 @@ export default function HeroSection({ profileData }: HeroSectionProps) {
   const { name, title, email, imageUrl, cvUrl } = profileData;
 
   return (
-    <aside className="w-full max-w-sm flex-shrink-0">
+    <aside className="w-full max-w-sm flex-shrink-0 sm:sticky top-30">
       <div className="relative pt-19 text-center border-2 border-primary rounded-2xl bg-card-background p-6">
         <div className="absolute -top-25 left-1/2 -translate-x-1/2">
           <Image

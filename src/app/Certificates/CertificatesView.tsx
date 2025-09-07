@@ -5,7 +5,7 @@ import TitlePage from "../components/shared/TitlePage";
 const CertificatesPage = () => {
   const title: string = usePathname().replace("/", "");
   return (
-    <div>
+    <div className="pt-5">
       <TitlePage title={title} />
       {/* بقیه محتوای صفحه پروژه‌ها در اینجا قرار می‌گیرد */}
       <p>Here is a list of my Certificates.</p>

@@ -6,7 +6,7 @@ const CertificatesPage = () => {
   const title: string = usePathname().replace("/", "");
 
   return (
-    <div>
+    <div className="pt-5">
       <TitlePage title={title === "" ? "About Me" : ""} />
       <p className="text-lg leading-7 text-justify">
         Hello! As a Front-End Developer with a passion for creating clean,

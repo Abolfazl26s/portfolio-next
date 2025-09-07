@@ -9,7 +9,7 @@ const SkillsView = () => {
   const title: string = pathname.slice(1);
 
   return (
-    <div>
+    <div className="pt-5">
       <TitlePage title={title} />
       {/* بقیه محتوای صفحه پروژه‌ها در اینجا قرار می‌گیرد */}
       <p>Here is a list of my Skills.</p>
