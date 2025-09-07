@@ -35,7 +35,7 @@ const Pagination: React.FC<PaginationProps> = ({
         Previous
       </button>
 
-      <span className="text-sm font-medium text-[var(--text-secondary)] dark:text-[var(--text-secondary-dark)]">
+      <span className="text-sm font-medium text-[var(--foreground)] dark:text-[var(--foreground)]">
         Page {currentPage} of {totalPages}
       </span>
 

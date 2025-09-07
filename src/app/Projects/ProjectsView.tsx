@@ -1,8 +1,9 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useCallback } from "react"; // Import useCallback for memoization
+import { useCallback, useRef, useEffect } from "react";
 import { usePaginatedFetch } from "@/hooks/usePaginatedFetch";
+import { useMediaQuery } from "@/hooks/useMediaQuery"; // <-- Import the new hook
 import { Project } from "@/types";
 import TitlePage from "@/app/components/shared/TitlePage";
 import ShapeMonitor from "../components/ShapeMonitor/page";
@@ -13,13 +14,16 @@ const ProjectsView = () => {
   const title: string = pathname.slice(1);
   const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
-  /**
-   * Memoized function to safely extract the project array from the API response.
-   * Using useCallback prevents this function from being recreated on every render,
-   * which in turn prevents the usePaginatedFetch hook from re-running unnecessarily.
-   */
+  // Use the media query hook to detect mobile screens
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  // Set the number of items per page based on the screen size
+  const ITEMS_PER_PAGE = isMobile ? 4 : 9;
+
+  const topOfPageRef = useRef<HTMLDivElement>(null);
+  const isInitialMount = useRef(true);
+
   const extractProjects = useCallback((data: unknown): Project[] => {
-    // A type guard to safely check if the response has the expected structure.
     if (
       data &&
       typeof data === "object" &&
@@ -28,11 +32,9 @@ const ProjectsView = () => {
     ) {
       return (data as { projectTemplate: Project[] }).projectTemplate;
     }
-    // Return an empty array if the structure is incorrect, preventing crashes.
     return [];
   }, []);
 
-  // Use the custom hook to get data and pagination logic.
   const {
     currentItems,
     currentPage,
@@ -42,30 +44,40 @@ const ProjectsView = () => {
     error,
   } = usePaginatedFetch<Project>(
     API_URL,
-    6, // Items per page
-    extractProjects // Pass the memoized extractor function
+    ITEMS_PER_PAGE, // <-- Pass the dynamic value here
+    extractProjects
   );
 
-  // Display a loading message while data is being fetched.
+  useEffect(() => {
+    if (isInitialMount.current) {
+      isInitialMount.current = false;
+    } else {
+      topOfPageRef.current?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [currentPage]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   if (loading) {
     return (
       <div className="flex h-screen items-center justify-center">
-        Loading projects...
+        Loading...
       </div>
     );
   }
 
-  // Display an error message if the data fetch fails.
   if (error) {
     return (
       <div className="flex h-screen items-center justify-center text-red-500">
-        Error fetching data: {error.message}
+        Error: {error.message}
       </div>
     );
   }
 
   return (
-    <div>
+    <div ref={topOfPageRef}>
       <TitlePage title={title} />
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
         {currentItems.map((project) => (
@@ -79,12 +91,11 @@ const ProjectsView = () => {
         ))}
       </div>
 
-      {/* Render pagination controls only if there is more than one page. */}
       {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
-          onPageChange={setCurrentPage}
+          onPageChange={handlePageChange}
         />
       )}
     </div>
