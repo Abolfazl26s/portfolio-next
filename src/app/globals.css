@@ -87,7 +87,7 @@ body {
 /* ========================= */
 
 a.active {
-    background-color: var(--border)!important;
+    background-color: var(--border) !important;
     color: var(--primary) !important;
     font-weight: bold !important;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
@@ -101,6 +101,8 @@ a.active {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
 
     &::after {
         content: '';
@@ -183,7 +185,7 @@ a.active {
 
         .careerHistory__card_desc {
             position: absolute;
-            inset-inline-end: 27%;
+            inset-inline-start: 13%;
 
             .componyName {
                 font-weight: bold;

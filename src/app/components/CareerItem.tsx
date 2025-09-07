@@ -1,71 +1,74 @@
 "use client";
-// import { useLanguage } from "@/context/LanguageContext"; // فرض بر این است که شما یک context برای زبان دارید
 
-// نوع داده‌ای که کامپوننت دریافت می‌کند
-// interface CareerItemProps {
-//   componyName_fa: string;
-//   componyName_en: string;
-//   jobTitle_fa: string;
-//   jobTitle_en: string;
-//   CooperationStartDate_fa: string;
-//   CooperationStartDate_en: string;
-//   EndDateOfCooperation_fa: string; // می‌تواند "Present" یا تاریخ باشد
-//   EndDateOfCooperation_en: string; // می‌تواند "Present" یا تاریخ باشد
-//   logoSrc: string; // مسیر لوگوی شرکت
-// }
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
-// تابع کمکی برای نمایش "End of Date" به صورت مناسب
-// const getEndOfDate = (endDate: string) => {
-//   return endDate.toLowerCase() === "present" ? "End of Date" : endDate;
-// };
+// تعریف تایپ برای داده‌ها (فقط فیلدهای مورد نیاز)
+interface CareerItemProps {
+  id: number;
+  componyName_en: string;
+  jobTitle_en: string;
+  CooperationStartDate_en: string;
+  EndDateOfCooperation_en: string;
+  logoSrc: string;
+}
 
-const CareerItem = () => {
+const CareerHistory = () => {
+  const [careerHistory, setCareerHistory] = useState<CareerItemProps[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const getMyCareerHistory = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch(
+          "https://abolfazl26s.github.io/project_data/data/db.json"
+        );
+        const data = await res.json();
+        setCareerHistory(data.myCareerHistory);
+      } catch (error) {
+        console.error("Error fetching career history:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getMyCareerHistory();
+  }, []);
+
+  if (loading) {
+    return <div>Loading ...</div>;
+  }
+
   return (
-    <div className="card">
-      <div className="careerHistory__card_img">
-        {/* نام شرکت را بر اساس زبان فعلی در alt قرار می‌دهیم */}
-        {/* <img
-              src={logoSrc}
-              alt={currentLanguage === "fa" ? componyName_fa : componyName_en}
-            /> */}
-      </div>
-      <div className="careerHistory__card_desc">
-        <h5 className="componyName">
-          {/* نمایش نام شرکت بر اساس زبان */}
-          {/* {currentLanguage === "fa" ? componyName_fa : componyName_en} */}
-          company name
-        </h5>
-        <h6 className="jobTitle">
-          {/* نمایش عنوان شغل بر اساس زبان */}
-          {/* {currentLanguage === "fa" ? jobTitle_fa : jobTitle_en} */}
-          job title
-        </h6>
-        <p className="CooperationStartDate">
-          {/* نمایش تاریخ شروع بر اساس زبان */}
-          {/* {currentLanguage === "fa"
-                ? CooperationStartDate_fa
-                : CooperationStartDate_en} */}
-          Start Date
-        </p>
-        <p className="EndDateOfCooperation">
-          {/* نمایش تاریخ پایان بر اساس زبان */}
-          {/* {currentLanguage === "fa"
-                ? EndDateOfCooperation_fa
-                : EndDateOfCooperation_en} */}
-          Date
-        </p>
-      </div>
-      <h1 className="EndOfDate">
-        {/* فراخوانی تابع getEndOfDate با کلید مناسب زبان */}
-        {/* {getEndOfDate(
-              currentLanguage === "fa"
-                ? EndDateOfCooperation_fa
-                : EndDateOfCooperation_en
-            )} */}
-        end of time
-      </h1>
-    </div>
+    <>
+      {careerHistory.map((item) => (
+        <div className="careerHistory__card mr-auto ml-auto" key={item.id}>
+          <div className="card">
+            <div className="careerHistory__card_img">
+              <Image
+                src={item.logoSrc}
+                alt={item.componyName_en}
+                width="80"
+                height="80"
+              />
+            </div>
+            <div className="careerHistory__card_desc text-left">
+              <h5 className="componyName">{item.componyName_en}</h5>
+              <h6 className="jobTitle">{item.jobTitle_en}</h6>
+              <p className="CooperationStartDate">
+                {item.CooperationStartDate_en}
+              </p>
+              <p className="EndDateOfCooperation">
+                {item.EndDateOfCooperation_en}
+              </p>
+            </div>
+            <h1 className="EndOfDate">{item.id}</h1>
+          </div>
+        </div>
+      ))}
+    </>
   );
 };
 
-export default CareerItem;
+export default CareerHistory;

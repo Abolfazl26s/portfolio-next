@@ -1,8 +1,15 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
- 
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "abolfazl26s.github.io",
+        port: "",
+        pathname: "/project_data/images/**", // این بخش برای امنیت بیشتر است
+      },
+    ],
+  },
 };
 
-export default nextConfig;
+module.exports = nextConfig;
