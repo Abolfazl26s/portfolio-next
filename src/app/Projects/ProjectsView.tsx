@@ -1,44 +1,74 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useCallback } from "react"; // Import useCallback for memoization
+import { usePaginatedFetch } from "@/hooks/usePaginatedFetch";
+import { Project } from "@/types";
 import TitlePage from "@/app/components/shared/TitlePage";
 import ShapeMonitor from "../components/ShapeMonitor/page";
-import { Project } from "@/types";
+import Pagination from "../components/Pagination/page";
 
 const ProjectsView = () => {
   const pathname = usePathname();
-  // We use the imported Project type here
-  const [projects, setProjects] = useState<Project[]>([]);
-
   const title: string = pathname.slice(1);
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || "";
 
-  // Fetches project data from the API only once when the component mounts.
-  useEffect(() => {
-    const fetchProjects = async () => {
-      if (!API_URL) {
-        console.error("API URL is not defined.");
-        return;
-      }
+  /**
+   * Memoized function to safely extract the project array from the API response.
+   * Using useCallback prevents this function from being recreated on every render,
+   * which in turn prevents the usePaginatedFetch hook from re-running unnecessarily.
+   */
+  const extractProjects = useCallback((data: unknown): Project[] => {
+    // A type guard to safely check if the response has the expected structure.
+    if (
+      data &&
+      typeof data === "object" &&
+      "projectTemplate" in data &&
+      Array.isArray((data as { projectTemplate: unknown }).projectTemplate)
+    ) {
+      return (data as { projectTemplate: Project[] }).projectTemplate;
+    }
+    // Return an empty array if the structure is incorrect, preventing crashes.
+    return [];
+  }, []);
 
-      try {
-        const response = await axios.get(API_URL);
-        setProjects(response.data.projectTemplate);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  // Use the custom hook to get data and pagination logic.
+  const {
+    currentItems,
+    currentPage,
+    totalPages,
+    setCurrentPage,
+    loading,
+    error,
+  } = usePaginatedFetch<Project>(
+    API_URL,
+    6, // Items per page
+    extractProjects // Pass the memoized extractor function
+  );
 
-    fetchProjects();
-  }, [API_URL]); // The effect depends on API_URL.
+  // Display a loading message while data is being fetched.
+  if (loading) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        Loading projects...
+      </div>
+    );
+  }
+
+  // Display an error message if the data fetch fails.
+  if (error) {
+    return (
+      <div className="flex h-screen items-center justify-center text-red-500">
+        Error fetching data: {error.message}
+      </div>
+    );
+  }
 
   return (
     <div>
       <TitlePage title={title} />
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {projects.map((project) => (
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+        {currentItems.map((project) => (
           <ShapeMonitor
             key={project.id}
             imgSrc={project.imgSrc}
@@ -48,6 +78,15 @@ const ProjectsView = () => {
           />
         ))}
       </div>
+
+      {/* Render pagination controls only if there is more than one page. */}
+      {totalPages > 1 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
+      )}
     </div>
   );
 };

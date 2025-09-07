@@ -23,7 +23,7 @@ const sampleProfileData: ProfileData = {
   name: " Abolfazl Saeidabadi",
   title: " Frontend Developer",
   email: "asaeidabadi243@gmail.com",
-  imageUrl: "/images/profile.avif",
+  imageUrl: "/images/Me.png",
   cvUrl: "/path/to/your-cv.pdf", // مسیر فایل رزومه خود را قرار دهید
 };
 export default async function RootLayout({
@@ -48,9 +48,9 @@ export default async function RootLayout({
           <Navbar />
           <Middlenav />
 
-          <main className="flex justify-around items-start text-[var(--primary)] dark:text-[var(--primary)] dark:bg-[var(--background)] bg-[var(--background)] min-h-screen">
+          <main className="flex justify-between items-start text-[var(--primary)] dark:text-[var(--primary)] dark:bg-[var(--background)] bg-[var(--background)] min-h-screen">
             <HeroSection profileData={sampleProfileData} />
-            <div className="basis-2/3 border-2 border-primary rounded-lg p-4 m-4">
+            <div className="flex-1 border-2 border-primary rounded-lg p-4 m-4">
               {children}
             </div>
           </main>

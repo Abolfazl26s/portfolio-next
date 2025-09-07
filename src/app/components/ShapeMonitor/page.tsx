@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import "./shape.css";
 import { ShapeMonitorProps } from "@/types";
+import { CalendarClock } from "lucide-react";
 
 export default function ShapeMonitor({
   imgSrc,
@@ -35,7 +36,9 @@ export default function ShapeMonitor({
         <div className="mt-18 text-center">
           {/* Using h2 for a card title is better for HTML semantics than h1. */}
           <h2 className="mb-3 text-md font-bold">{projectName}</h2>
-          <p>Time: {time}</p>
+          <p className="text-sm text-[var(--muted-foreground)] flex items-center justify-center gap-2">
+            <CalendarClock className="h-5 w-5"/> Time: {time}
+          </p>
         </div>
       </Link>
     </div>
