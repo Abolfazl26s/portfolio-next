@@ -3,8 +3,8 @@
 import { useState } from "react";
 import TitlePage from "@/app/components/shared/TitlePage"; // Assumed component
 import { ICertificate } from "@/types";
-import CertificateCard from "./CertificateCard";
-import CertificateModal from "../components/CertificateModal";
+import CertificateCard from "../components/Certificates/CertificateCard";
+import CertificateModal from "../components/Certificates/CertificateModal";
 import { AnimatePresence } from "framer-motion";
 
 interface CertificatesViewProps {
@@ -12,14 +12,13 @@ interface CertificatesViewProps {
 }
 
 const CertificatesView = ({ certificates }: CertificatesViewProps) => {
-  const title = "Certificates";
 
   // State to keep track of the currently selected certificate for the modal
   const [selectedCert, setSelectedCert] = useState<ICertificate | null>(null);
 
   return (
     <div className="pt-5 container mx-auto px-4">
-      <TitlePage title={title} />
+      <TitlePage title="Certificates" />
 
       <div className="flex flex-wrap justify-center gap-8 mt-8 mb-8">
         {certificates.map((cert) => (

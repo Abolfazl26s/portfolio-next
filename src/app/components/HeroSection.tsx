@@ -20,7 +20,7 @@ export default function HeroSection({ profileData }: HeroSectionProps) {
             alt={name} // Alt text بهینه برای سئو
             width={128}
             height={128}
-            priority // اولویت لود برای تصویر اصلی صفحه
+            priority={true} // اولویت لود برای تصویر اصلی صفحه
             className="size-38 rounded-full border-4 border-white object-cover"
           />
         </div>

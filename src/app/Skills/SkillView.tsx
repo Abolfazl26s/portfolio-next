@@ -2,7 +2,7 @@
 
 import TitlePage from "@/app/components/shared/TitlePage";
 import { SkillCategory } from "@/types";
-import SkillCard from "./SkillCard";
+import SkillCard from "../components/Skills/SkillCard";
 
 interface SkillsViewProps {
   categorizedSkills: SkillCategory[];

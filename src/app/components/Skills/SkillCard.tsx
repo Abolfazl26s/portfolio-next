@@ -1,5 +1,5 @@
 import { Skill } from "@/types";
-import SkillIcon from "@/app/components/SkillIcon";
+import SkillIcon from "@/app/components/Skills/SkillIcon";
 import { motion } from "framer-motion";
 
 const SkillCard = ({ skill }: { skill: Skill }) => {
