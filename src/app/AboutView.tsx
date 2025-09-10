@@ -8,7 +8,7 @@ const CertificatesPage = () => {
   return (
     <div className="pt-5">
       <TitlePage title={title === "" ? "About Me" : ""} />
-      <p className="text-lg leading-7 text-justify">
+      <p className="text-lg leading-7 text-justify ">
         Hello! As a Front-End Developer with a passion for creating clean,
         accessible, and engaging user experiences, I thrive on bridging the gap
         between design and technology. I love the challenge of transforming

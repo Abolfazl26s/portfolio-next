@@ -53,17 +53,17 @@ const CareerHistory = () => {
                 height="80"
               />
             </div>
-            <div className="careerHistory__card_desc text-left">
+            <div className="careerHistory__card_desc text-left ">
               <h5 className="componyName">{item.componyName_en}</h5>
               <h6 className="jobTitle">{item.jobTitle_en}</h6>
               <p className="CooperationStartDate">
                 {item.CooperationStartDate_en}
               </p>
-              <p className="EndDateOfCooperation">
+              <p className="EndDateOfCooperation text-cyan-400">
                 {item.EndDateOfCooperation_en}
               </p>
             </div>
-            <h1 className="EndOfDate">{item.id}</h1>
+            <h1 className="EndOfDate text-cyan-400">{item.id}</h1>
           </div>
         </div>
       ))}

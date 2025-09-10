@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
 
 import { Providers } from "./providers";
 // import { NextIntlClientProvider } from "next-intl";
@@ -12,7 +13,10 @@ import type { ProfileData } from "@/types";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
-
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"], // 400: regular, 500: medium, 600: semi-bold, 700: bold
+});
 export const metadata: Metadata = {
   title: "Portfolio",
   description: "My Portfolio",
@@ -40,11 +44,11 @@ export default async function RootLayout({
       lang={locale}
       dir={locale === "fa" ? "rtl" : "ltr"}
       suppressHydrationWarning={true}
-      className={inter.className}
+      className={poppins.className}
     >
       <body className="bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
         {/* <NextIntlClientProvider locale={locale} > */}
-        <Providers >
+        <Providers>
           <Navbar />
           <Middlenav />
 
