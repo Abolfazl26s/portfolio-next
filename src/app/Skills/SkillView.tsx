@@ -1,28 +1,36 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import TitlePage from "@/app/components/shared/TitlePage";
-import { Skill } from "@/types"; 
-import ProgressBubble from "./ProgressBubble";
+import { SkillCategory } from "@/types";
+import SkillCard from "./SkillCard";
 
+interface SkillsViewProps {
+  categorizedSkills: SkillCategory[];
+}
 
-const skillsData: Skill[] = [
-  { name_en: "JavaScript", levelOfSkill: 90 },
-  { name_en: "TypeScript", levelOfSkill: 80 },
-  { name_en: "React", levelOfSkill: 85 },
-  { name_en: "Next.js", levelOfSkill: 88 },
-  { name_en: "Node.js", levelOfSkill: 75 },
-  { name_en: "Tailwind CSS", levelOfSkill: 95 },
-];
-
-const SkillsView = () => {
-  const pathname = usePathname();
-  const title: string = pathname.slice(1);
-
+const SkillsView = ({ categorizedSkills }: SkillsViewProps) => {
   return (
-    <div className="pt-5">
-      <TitlePage title={title} />
-      <ProgressBubble />
+    <div className="pt-5 container mx-auto px-4">
+      <TitlePage title="My Tech Stack" />
+
+      <div className="space-y-12 mt-12 mb-16">
+        {categorizedSkills.length > 0 ? (
+          categorizedSkills.map((category) => (
+            <div key={category.title}>
+              <h3 className="text-2xl font-bold text-cyan-400 mb-6 text-center sm:text-left">
+                {category.title}
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
+                {category.skills.map((skill) => (
+                  <SkillCard key={skill.id} skill={skill} />
+                ))}
+              </div>
+            </div>
+          ))
+        ) : (
+          <p className="text-center text-gray-400">Could not load skills.</p>
+        )}
+      </div>
     </div>
   );
 };

@@ -33,6 +33,22 @@ export interface ShapeMonitorProps {
   link: string;
 }
 export interface Skill {
+  id: number | string;
   name_en: string;
-  levelOfSkill: number;
+  levelOfSkill: number | string;
+  // Optional: Add other fields if your API provides them
+  // name_fa?: "Html و CSS";
+}
+
+export interface SkillCategory {
+  title: string;
+  skills: Skill[];
+}
+
+export interface ICertificate {
+  id: string | number;
+  imgSrc: string;
+  title_en: string;
+  // Optional: Add other fields if your API provides them
+  // title_fa?: string;
 }

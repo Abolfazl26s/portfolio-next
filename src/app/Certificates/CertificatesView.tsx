@@ -1,16 +1,47 @@
 "use client";
-import { usePathname } from "next/navigation";
-import TitlePage from "../components/shared/TitlePage";
 
-const CertificatesPage = () => {
-  const title: string = usePathname().replace("/", "");
+import { useState } from "react";
+import TitlePage from "@/app/components/shared/TitlePage"; // Assumed component
+import { ICertificate } from "@/types";
+import CertificateCard from "./CertificateCard";
+import CertificateModal from "../components/CertificateModal";
+import { AnimatePresence } from "framer-motion";
+
+interface CertificatesViewProps {
+  certificates: ICertificate[];
+}
+
+const CertificatesView = ({ certificates }: CertificatesViewProps) => {
+  const title = "Certificates";
+
+  // State to keep track of the currently selected certificate for the modal
+  const [selectedCert, setSelectedCert] = useState<ICertificate | null>(null);
+
   return (
-    <div className="pt-5">
+    <div className="pt-5 container mx-auto px-4">
       <TitlePage title={title} />
-      {/* بقیه محتوای صفحه پروژه‌ها در اینجا قرار می‌گیرد */}
-      <p>Here is a list of my Certificates.</p>
+
+      <div className="flex flex-wrap justify-center gap-8 mt-8 mb-8">
+        {certificates.map((cert) => (
+          <CertificateCard
+            key={cert.id}
+            certificate={cert}
+            onSelect={setSelectedCert} // Pass the state setter to the card
+          />
+        ))}
+      </div>
+
+      {/* AnimatePresence handles the animation of components when they are removed from the DOM */}
+      <AnimatePresence>
+        {selectedCert && (
+          <CertificateModal
+            certificate={selectedCert}
+            onClose={() => setSelectedCert(null)} // Function to close the modal
+          />
+        )}
+      </AnimatePresence>
     </div>
   );
 };
 
-export default CertificatesPage;
+export default CertificatesView;

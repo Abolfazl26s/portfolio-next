@@ -39,12 +39,12 @@ export default async function RootLayout({
     <html
       lang={locale}
       dir={locale === "fa" ? "rtl" : "ltr"}
-      suppressHydrationWarning
+      suppressHydrationWarning={true}
       className={inter.className}
     >
       <body className="bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
         {/* <NextIntlClientProvider locale={locale} > */}
-        <Providers>
+        <Providers >
           <Navbar />
           <Middlenav />
 
