@@ -80,15 +80,17 @@ const ProjectsView = () => {
     <div ref={topOfPageRef} className="pt-5">
       <TitlePage title={title} />
       <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3">
-        {currentItems.map((project) => (
-          <ShapeMonitor
-            key={project.id}
-            imgSrc={project.imgSrc}
-            projectName={project.name_en}
-            link={project.link}
-            time={project.time_en}
-          />
-        ))}
+        {currentItems
+          .sort((a, b) => a.name_en.localeCompare(b.name_en))
+          .map((project) => (
+            <ShapeMonitor
+              key={project.id}
+              imgSrc={project.imgSrc}
+              projectName={project.name_en}
+              link={project.link}
+              time={project.time_en}
+            />
+          ))}
       </div>
 
       {totalPages > 1 && (
