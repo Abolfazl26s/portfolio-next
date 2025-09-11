@@ -43,23 +43,23 @@ const CareerHistory = () => {
   return (
     <>
       {careerHistory.map((item) => (
-        <div className="careerHistory__card mr-auto ml-auto" key={item.id}>
+        <div className="careerHistory__card" key={item.id}>
           <div className="card">
-            <div className="careerHistory__card_img">
-              <Image
-                src={item.logoSrc}
-                alt={item.componyName_en}
-                width="80"
-                height="80"
-              />
-            </div>
-            <div className="careerHistory__card_desc text-left ">
-              <h5 className="componyName">{item.componyName_en}</h5>
+            <Image
+              src={item.logoSrc}
+              alt={item.componyName_en}
+              width="80"
+              height="80"
+              className="careerHistory__card_img"
+            />
+
+            <div className="careerHistory__card_desc">
+              <h5>{item.componyName_en}</h5>
               <h6 className="jobTitle">{item.jobTitle_en}</h6>
               <p className="CooperationStartDate">
                 {item.CooperationStartDate_en}
               </p>
-              <p className="EndDateOfCooperation text-cyan-400">
+              <p className="EndDateOfCooperation ">
                 {item.EndDateOfCooperation_en}
               </p>
             </div>

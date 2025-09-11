@@ -13,7 +13,7 @@ const CertificateCard = ({ certificate, onSelect }: CertificateCardProps) => {
     <motion.div
       layoutId={`card-container-${certificate.id}`} // Unique ID for shared layout animation
       onClick={() => onSelect(certificate)}
-      className="w-full sm:w-72 cursor-pointer flex flex-col items-center text-center border border-gray-700 rounded-lg p-4 shadow-lg bg-gray-800
+      className="w-full sm:w-65 cursor-pointer flex flex-col items-center text-center border border-gray-700 rounded-lg p-4 shadow-lg bg-gray-800
                  transition-transform transform hover:-translate-y-2 hover:shadow-cyan-500/50 will-change-transform"
     >
       <motion.div

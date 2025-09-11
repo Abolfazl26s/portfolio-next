@@ -35,9 +35,23 @@
 
 
     --liquid-color: #3498db;
-        /* رنگ پیش‌فرض مایع (آبی) */
-        --wave-color-1: rgba(255, 255, 255, 0.7);
-        --wave-color-2: rgba(255, 255, 255, 0.4);
+    /* رنگ پیش‌فرض مایع (آبی) */
+    --wave-color-1: rgba(255, 255, 255, 0.7);
+    --wave-color-2: rgba(255, 255, 255, 0.4);
+
+    /* This is the single place you'll need to edit your font sizes */
+    /* format: clamp(min-size, preferred-size, max-size) */
+
+    --fs-400: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+    /* Body text (~16px to 18px) */
+    --fs-500: clamp(1.125rem, 1rem + 0.625vw, 1.4rem);
+    /* Subtitles (~18px to 22.4px) */
+    --fs-600: clamp(1.4rem, 1.25rem + 0.75vw, 1.75rem);
+    /* h3 (~22.4px to 28px) */
+    --fs-700: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
+    /* h2 (~28px to 40px) */
+    --fs-800: clamp(2.25rem, 1.8rem + 2.25vw, 3.5rem);
+    /* h1 (~36px to 56px) */
 }
 
 html.dark {
@@ -66,15 +80,53 @@ html.dark {
 
 
     --liquid-color: #4299e1;
-        /* آبی روشن‌تر برای حالت تاریک */
-        --wave-color-1: rgba(26, 32, 44, 0.7);
-        --wave-color-2: rgba(26, 32, 44, 0.4);
+    /* آبی روشن‌تر برای حالت تاریک */
+    --wave-color-1: rgba(26, 32, 44, 0.7);
+    --wave-color-2: rgba(26, 32, 44, 0.4);
 }
 
 body {
     background-color: inherit !important;
     color: var(--foreground);
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    line-height: 1.6;
+    font-size: var(--fs-400);
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 600;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: var(--fs-600);
+}
+
+h2 {
+    font-size: var(--fs-500);
+}
+
+h3 {
+    font-size: var(--fs-400);
+}
+
+h4 {
+    font-size: var(--fs-200);
+}
+
+h5 {
+    font-size: var(--fs-200);
+}
+
+h6 {
+    font-size: var(--fs-100);
+}
+
+p {
+    font-size: var(--fs-400);
 }
 
 .mainTitle {
@@ -112,126 +164,117 @@ a.active {
     max-width: 1024px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center !important;
     flex-direction: row;
     flex-wrap: wrap;
-
-    &::after {
-        content: '';
-        position: absolute;
-        inset-inline-end: 0;
-        top: 33%;
-        width: 90px;
-        background-color: transparent;
-        border-top: 1px dashed var(--colorBorder);
-        border-left: 1px dashed var(--colorBorder);
-        height: var(--height);
-    }
-
-    &::before {
-        content: '';
-        position: absolute;
-        inset-inline-start: 0;
-        top: 33%;
-        width: 90px;
-        background-color: transparent;
-        border-top: 1px dashed var(--colorBorder);
-        border-right: 1px dashed var(--colorBorder);
-        height: var(--height);
-    }
-
-    .card {
-        border-radius: 0;
-        position: relative;
-        width: calc(100% - 400px);
-        height: 147px;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        padding: 1em;
-        border: 1px dashed var(--colorBorder);
-        margin-inline-end: 40px;
-
-        &::after {
-            position: absolute;
-            content: '';
-            top: 52%;
-            width: 132px;
-            height: var(--colorBorder);
-            border-top: 1px dashed var(--colorBorder);
-            inset-inline-start: 100%;
-        }
-
-        &::before {
-            position: absolute;
-            content: '';
-            top: 52%;
-            width: 92px;
-            height: var(--colorBorder);
-            border-top: 1px dashed var(--colorBorder);
-            inset-inline-end: 100%;
-        }
-
-        .careerHistory__card_img {
-            position: absolute;
-            inset-inline-end: -11%;
-            width: var(--imgSize);
-            height: var(--imgSize);
-            border: rgb(171, 170, 166) 6px solid;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: var(--imgRadius);
-            background: var(--background);
-            z-index: 9;
-
-            img {
-                position: relative;
-                object-fit: fill;
-                width: 100%;
-                height: 100%;
-            }
-        }
-
-        .careerHistory__card_desc {
-            position: absolute;
-            inset-inline-start: 13%;
-
-            .componyName {
-                font-weight: bold;
-                font-size: 1.2em;
-            }
-
-            .jobTitle {
-                font-size: 1em;
-            }
-        }
-
-        .EndOfDate {
-            position: absolute;
-            inset-inline-start: 3%;
-            top: 50%;
-            transform: translateY(-50%);
-            font-weight: bolder;
-        }
-    }
 }
 
-@media screen and (max-width: '1024px') {
+.careerHistory__card::after {
+    content: '';
+    position: absolute;
+    inset-inline-end: 0;
+    top: 33%;
+    width: 90px;
+    background-color: transparent;
+    border-top: 1px dashed var(--colorBorder);
+    border-left: 1px dashed var(--colorBorder);
+    height: var(--height);
+}
+
+.careerHistory__card::before {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    top: 33%;
+    width: 90px;
+    background-color: transparent;
+    border-top: 1px dashed var(--colorBorder);
+    border-right: 1px dashed var(--colorBorder);
+    height: var(--height);
+}
+
+.careerHistory__card .card {
+    border-radius: 0;
+    position: relative;
+    width: calc(100% - 400px);
+    height: 147px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 1em;
+    border: 1px dashed var(--colorBorder);
+    margin-inline-end: 40px;
+}
+
+.careerHistory__card .card::after {
+    position: absolute;
+    content: '';
+    top: 52%;
+    width: 132px;
+    height: var(--colorBorder);
+    border-top: 1px dashed var(--colorBorder);
+    inset-inline-start: 100%;
+}
+
+.careerHistory__card .card::before {
+    position: absolute;
+    content: '';
+    top: 52%;
+    width: 92px;
+    height: var(--colorBorder);
+    border-top: 1px dashed var(--colorBorder);
+    inset-inline-end: 100%;
+}
+
+.careerHistory__card .card .careerHistory__card_img {
+    position: absolute;
+    inset-inline-end: -11%;
+    width: var(--imgSize);
+    height: var(--imgSize);
+    border: #abaaa6 6px solid;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--imgRadius);
+    background: var(--background);
+    z-index: 9;
+}
+
+.careerHistory__card .card .careerHistory__card_img img {
+    position: relative;
+    object-fit: fill;
+    width: 100%;
+    height: 100%;
+}
+
+.careerHistory__card .card .careerHistory__card_desc {
+    position: absolute;
+    inset-inline-start: 13%;
+}
+
+
+
+.careerHistory__card .card .EndOfDate {
+    position: absolute;
+    inset-inline-start: 3%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: bolder;
+}
+
+@media screen and (max-width: 1024px) {
     .careerHistory__card_desc {
         inset-inline-end: 27% !important;
     }
 }
 
-@media screen and (max-width: '768px') {
-    .careerHistory__card {
+@media screen and (max-width: 768px) {
 
-        &::after,
-        &::before {
-            display: none !important;
-        }
+    .careerHistory__card::after,
+    .careerHistory__card::before {
+        display: none !important;
     }
 
     .card {
@@ -239,27 +282,26 @@ a.active {
     }
 }
 
-@media screen and (max-width: '540px') {
+@media screen and (max-width: 540px) {
     .card {
         width: 100% !important;
         margin-inline-start: 0 !important;
+    }
 
-        &::after,
-        &::before {
-            width: 50px !important;
-        }
+    .card::after,
+    .card::before {
+        width: 50px !important;
+    }
 
-        .careerHistory__card_img {
-            top: -20% !important;
-            inset-inline-end: -12% !important;
+    .card .careerHistory__card_img {
+        top: -20% !important;
+        inset-inline-end: -12% !important;
+        width: 90px !important;
+        height: 90px !important;
+    }
 
-            width: 90px !important;
-            height: 90px !important;
-        }
-
-        .careerHistory__card_desc {
-            inset-inline-start: 2% !important;
-        }
+    .card .careerHistory__card_desc {
+        inset-inline-start: 2% !important;
     }
 
     .EndOfDate {
@@ -267,7 +309,7 @@ a.active {
     }
 }
 
-@media screen and (max-width: '340px') {
+@media screen and (max-width: 340px) {
     .careerHistory__card .card .careerHistory__card_desc .componyName {
         font-weight: bold;
         font-size: 1em;
@@ -298,3 +340,9 @@ a.active {
         transform: rotate(360deg);
     }
 } */
+
+@media (min-width: 1024px) {
+    main {
+        flex-direction: row !important;
+    }
+}

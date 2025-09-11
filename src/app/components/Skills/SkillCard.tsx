@@ -9,7 +9,7 @@ const SkillCard = ({ skill }: { skill: Skill }) => {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="flex flex-col items-center justify-center gap-4 p-6 bg-gray-800 rounded-lg shadow-lg
+      className="flex w-[120px] flex-col items-center justify-center py-5  bg-gray-800 rounded-lg shadow-lg
                  border border-gray-700 hover:border-cyan-500 transition-colors duration-300"
     >
       <SkillIcon name={skill.name_en} />

@@ -44,18 +44,20 @@ export default async function RootLayout({
       lang={locale}
       dir={locale === "fa" ? "rtl" : "ltr"}
       suppressHydrationWarning={true}
-      className={poppins.className}
+      className={`${poppins.className} bg-[#0f172a]`}
     >
-      <body className="bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
+      <body className=" container mr-auto ml-auto  text-[var(--foreground)] transition-colors duration-300">
         {/* <NextIntlClientProvider locale={locale} > */}
         <Providers>
           <Navbar />
-          <Middlenav />
-
-          <main className="flex justify-between items-start text-[var(--primary)] dark:text-[var(--primary)] dark:bg-[var(--background)] bg-[var(--background)] min-h-screen">
+          <main className="pt-25 md:pt-10 xl:pt-40 flex-col xl:flex items-start justify-center xl:justify-around xl:gap-6 px-2 md:px-6 xl:px-0 space-y-4 mb-4 text-[var(--primary)] dark:text-[var(--primary)] dark:bg-[var(--background)] bg-[var(--background)] min-h-screen">
             <HeroSection profileData={sampleProfileData} />
-            <div className="flex-1 border-2 border-primary rounded-lg p-4 m-4">
-              {children}
+
+            <div className="">
+              <Middlenav />
+              <div className="lg:w-3/4 xl:w-full border-2 border-primary rounded-2xl p-4">
+                {children}
+              </div>
             </div>
           </main>
         </Providers>

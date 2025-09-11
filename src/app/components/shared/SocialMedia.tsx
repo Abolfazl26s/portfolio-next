@@ -32,14 +32,14 @@ const socials = [
 
 export default function SocialMedia() {
   return (
-    <div className="flex flex-row  justify-center gap-4 mt-4 ">
+    <div className="flex items-center justify-center md:justify-start gap-2">
       {socials.map((social) => (
         <Link
           key={social.name}
           href={social.href}
           target="_blank"
           rel="noopener noreferrer"
-          className={`hover:text-[var(--primary)] ${social.color} transition-transform rounded-full ring p-2 `}
+          className={`hover:text-[var(--primary)] ${social.color} transition-transform rounded-full ring p-2 scale-80 xl:scale-100`}
         >
           <social.icon size={24} />
         </Link>
