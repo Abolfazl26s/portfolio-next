@@ -3,8 +3,6 @@ import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google";
 
 import { Providers } from "./providers";
-// import { NextIntlClientProvider } from "next-intl";
-// import { getMessages } from "next-intl/server";
 import type { Locale } from "../types";
 import Navbar from "./components/shared/Navbar";
 import Middlenav from "./components/shared/Middlenav";
@@ -48,7 +46,7 @@ export default async function RootLayout({
       className={`${poppins.className} dark:bg-[var(--background)] bg-[var(--background)]`}
     >
       <body className=" container mr-auto ml-auto  text-[var(--foreground)] transition-colors duration-300">
-        {/* <NextIntlClientProvider locale={locale} > */}
+        
         <Providers>
           <Navbar />
           <main className="pt-25 md:pt-10 xl:pt-40 flex-col xl:flex items-start justify-center xl:justify-around xl:gap-6 px-2 md:px-6 xl:px-0 space-y-4 mb-4 text-[var(--primary)] dark:text-[var(--primary)]  min-h-screen">
@@ -63,8 +61,6 @@ export default async function RootLayout({
             </div>
           </main>
         </Providers>
-
-        {/* </NextIntlClientProvider> */}
       </body>
     </html>
   );
