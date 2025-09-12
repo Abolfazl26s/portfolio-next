@@ -1,80 +1,86 @@
-:root {
-    /* --- رنگ‌های پایه - حالت روز --- */
-    --background: #e1e1e1;
-    /* پس‌زمینه اصلی (Slate 50) */
-    --foreground: #0f172a;
-    /* متن اصلی (Slate 900) */
+# 🚀 My Personal Portfolio (Abolfazl Saeidabadi)
 
-    /* --- رنگ‌های کارت و بخش‌ها --- */
-    --card-background: #ffffff;
-    /* پس‌زمینه کارت‌ها (سفید) */
-    --card-foreground: #0f172a;
-    /* متن روی کارت‌ها (Slate 900) */
+Welcome to my personal portfolio! This project serves as a comprehensive showcase of my skills, projects, and professional journey as a Frontend Developer. Built with modern web technologies, it emphasizes performance, user experience (UX), and a clean, responsive design.
 
-    /* --- رنگ اصلی و تعاملی --- */
-    --primary: #14b8a6;
-    /* رنگ اصلی گیرا (Teal 500) */
-    --primary-foreground: #f8fafc;
-    /* متن روی دکمه‌های اصلی (Slate 50) */
+## ✨ Features
 
-    /* --- رنگ‌های فرعی --- */
-    --secondary: #64748b;
-    /* متن ثانویه (Slate 500) */
-    --border: #e2e8f0;
+- **Responsive Design:** Optimized for seamless viewing across all devices (mobile, tablet, desktop).
+- **Dark/Light Mode Toggle:** A fully integrated theme switcher for personalized browsing experience.
+- **Dynamic Project Showcase:** A dedicated section to display my projects with detailed information and pagination.
+- **Skills Overview:** A categorized list of my technical skills, demonstrating my expertise.
+- **Certificates Display:** A showcase of my academic and professional certifications.
+- **Smooth Scrolling:** Enhanced user experience with smooth navigation between sections.
+- **Scroll-to-Top Button:** A convenient button for quick navigation back to the top of long pages.
+- **Animated Download Button:** A visually engaging download button for my CV, providing instant feedback.
+- **Optimized Data Fetching:** Leverages Next.js Server Components and intelligent data caching for lightning-fast load times.
+- **Type-Safe Codebase:** Built with TypeScript for enhanced code quality, maintainability, and error prevention.
+- **Modern Styling:** Utilizes Tailwind CSS for rapid and consistent UI development.
 
-    --height: 35px;
-    --imgSize: 180px;
-    --imgRadius: 50%;
-    --colorBorder: #888;
+## 🛠️ Technologies Used
 
+This project is built using a robust and modern stack:
 
-    --liquid-color: #3498db;
-    /* رنگ پیش‌فرض مایع (آبی) */
-    --wave-color-1: rgba(255, 255, 255, 0.7);
-    --wave-color-2: rgba(255, 255, 255, 0.4);
+- **Next.js 14+ (App Router):** The React framework for production, enabling server-side rendering (SSR), static site generation (SSG), and API Routes.
+- **React 18:** For building interactive user interfaces.
+- **TypeScript:** For type safety, improved code quality, and better developer experience.
+- **Tailwind CSS:** A utility-first CSS framework for rapid and custom styling.
+- **Framer Motion:** For smooth and performant animations (e.g., scroll-to-top button, modals).
+- **Lucide React:** A beautiful and consistent icon library.
+- **External JSON API:** Data for projects, skills, and certificates are fetched from a separate JSON source.
 
-    /* This is the single place you'll need to edit your font sizes */
-    /* format: clamp(min-size, preferred-size, max-size) */
+## 🚀 Getting Started
 
-    --fs-400: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
-    /* Body text (~16px to 18px) */
-    --fs-500: clamp(1.125rem, 1rem + 0.625vw, 1.4rem);
-    /* Subtitles (~18px to 22.4px) */
-    --fs-600: clamp(1.4rem, 1.25rem + 0.75vw, 1.75rem);
-    /* h3 (~22.4px to 28px) */
-    --fs-700: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
-    /* h2 (~28px to 40px) */
-    --fs-800: clamp(2.25rem, 1.8rem + 2.25vw, 3.5rem);
-    /* h1 (~36px to 56px) */
-}
+Follow these steps to get a local copy of the project up and running on your machine.
 
-html.dark {
-    /* --- رنگ‌های پایه - حالت شب --- */
-    --background: #0f172a;
-    /* پس‌زمینه اصلی (Slate 900) */
-    --foreground: #e2e8f0;
-    /* متن اصلی (Slate 200) */
+### Prerequisites
 
-    /* --- رنگ‌های کارت و بخش‌ها --- */
-    --card-background: #1e293b;
-    /* پس‌زمینه کارت‌ها (Slate 800) */
-    --card-foreground: #e2e8f0;
-    /* متن روی کارت‌ها (Slate 200) */
+- Node.js (v18.x or higher recommended)
+- npm or Yarn (npm v9.x or higher recommended)
+- Git
 
-    /* --- رنگ اصلی و تعاملی --- */
-    --primary: #2dd4bf;
-    /* رنگ اصلی روشن‌تر (Teal 400) */
-    --primary-foreground: #0f172a;
-    /* متن روی دکمه‌های اصلی (Slate 900) */
+### Installation
 
-    /* --- رنگ‌های فرعی --- */
-    --secondary: #94a3b8;
-    /* متن ثانویه (Slate 400) */
-    --border: #334155;
+1.  **Clone the repository:**
 
+    ```bash
+    git clone [https://github.com/your-username/your-portfolio-repo.git](https://github.com/your-username/your-portfolio-repo.git)
+    cd your-portfolio-repo
+    ```
 
-    --liquid-color: #4299e1;
-    /* آبی روشن‌تر برای حالت تاریک */
-    --wave-color-1: rgba(26, 32, 44, 0.7);
-    --wave-color-2: rgba(26, 32, 44, 0.4);
-}
+    (Replace `your-username` and `your-portfolio-repo` with your actual GitHub username and repository name.)
+
+2.  **Install dependencies:**
+
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+3.  **Set up Environment Variables:**
+    This project fetches data from an external JSON API. While the `data-service.ts` file directly references the external URL, for local development or if you need to override it, you might use a `.env.local` file.
+
+    Create a `.env.local` file in the root of your project:
+
+    ```
+    # No specific environment variables are strictly required for the current setup
+    # as the API URL is hardcoded in lib/data-service.ts for simplicity.
+    # However, you can add any other variables your project might need here.
+    # For example, if you wanted to make the API_URL configurable:
+    # NEXT_PUBLIC_EXTERNAL_API_URL="[https://abolfazl26s.github.io/project_data/data/db.json](https://abolfazl26s.github.io/project_data/data/db.json)"
+    ```
+
+    **Note:** For Vercel deployment, remember to add any necessary environment variables directly in the Vercel project settings.
+
+4.  **Run the development server:**
+
+    ```bash
+    npm run dev
+    # or
+    yarn dev
+    ```
+
+5.  **Open in your browser:**
+    Navigate to `http://localhost:3000` in your web browser.
+
+## 📦 Project Structure
