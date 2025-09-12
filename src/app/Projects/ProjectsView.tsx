@@ -6,7 +6,7 @@ import { usePaginatedFetch } from "@/hooks/usePaginatedFetch";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { Project, ProjectsApiResponse } from "@/types"; // ProjectsApiResponse را import کنید
 import TitlePage from "@/app/components/shared/TitlePage";
-import ShapeMonitor from "../components/ShapeMonitor/page";
+import ShapeMonitor from "../components/ShapeMonitor";
 import Pagination from "../components/shared/Pagination";
 import ProjectsLoadingView from "./ProjectsLoadingView";
 
