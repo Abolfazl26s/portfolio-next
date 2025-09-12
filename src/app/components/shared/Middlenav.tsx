@@ -3,6 +3,7 @@ import { GraduationCap, HardDrive, Home, Shovel, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
+import { ThemeSwitcher } from "./ThemeSwitcher";
 
 const navigation = [
   { name: "Home", href: "/", icon: Home },
@@ -32,11 +33,12 @@ export default function Middlenav() {
               key={item.name}
               href={item.href}
               className={`
-                ${pathName === item.href ? "active" : ""}
+                ${pathName === item.href ? "active lg:border-2" : ""}
                 flex items-center justify-center px-4 py-2 lg:px-8 lg:py-4 text-sm font-medium
                 text-gray-900 bg-white rounded-lg hover:bg-gray-100 dark:bg-gray-800
                 dark:hover:bg-gray-700 dark:text-white hover:scale-105
-                transition-transform duration-300 w-full lg:w-auto
+                transition-transform duration-300 w-full xl:w-auto
+                lg:w-full
               `}
             >
               <item.icon className="w-4 h-4 mr-2" />
@@ -47,7 +49,8 @@ export default function Middlenav() {
       </div>
 
       {/* Mobile Navigation (Hamburger Menu) */}
-      <div className="lg:hidden flex justify-end p-4">
+      <div className="lg:hidden flex justify-between p-4 py-2 shadow-2xl ring-amber-100">
+        {isOpen ? <ThemeSwitcher /> : ""}
         <button
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle navigation menu"
@@ -65,7 +68,7 @@ export default function Middlenav() {
                 key={item.name}
                 href={item.href}
                 className={`
-                  ${pathName === item.href ? "active" : ""}
+                  ${pathName === item.href ? "active border-2" : ""}
                     
                   flex items-center px-4 py-3 text-sm font-medium
                   text-gray-900 bg-white rounded-lg hover:bg-gray-100 dark:bg-gray-800

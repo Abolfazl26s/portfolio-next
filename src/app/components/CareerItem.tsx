@@ -43,7 +43,7 @@ const CareerHistory = () => {
   return (
     <>
       {careerHistory.map((item) => (
-        <div className="careerHistory__card" key={item.id}>
+        <div className="careerHistory__card mr-auto ml-auto" key={item.id}>
           <div className="card">
             <Image
               src={item.logoSrc}

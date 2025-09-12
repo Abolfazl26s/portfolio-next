@@ -53,9 +53,9 @@ export default async function RootLayout({
           <main className="pt-25 md:pt-10 xl:pt-40 flex-col xl:flex items-start justify-center xl:justify-around xl:gap-6 px-2 md:px-6 xl:px-0 space-y-4 mb-4 text-[var(--primary)] dark:text-[var(--primary)] dark:bg-[var(--background)] bg-[var(--background)] min-h-screen">
             <HeroSection profileData={sampleProfileData} />
 
-            <div className="">
+            <div className="lg:w-3/4 w-full">
               <Middlenav />
-              <div className="lg:w-3/4 xl:w-full border-2 border-primary rounded-2xl p-4">
+              <div className=" border-2 border-primary rounded-2xl p-4">
                 {children}
               </div>
             </div>

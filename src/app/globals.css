@@ -268,9 +268,24 @@ a.active {
     .careerHistory__card_desc {
         inset-inline-end: 27% !important;
     }
+
+    .careerHistory__card .card {
+        width: calc(100% - 285px);
+        height: 155px;
+    }
+        .careerHistory__card img{
+            transform: scale(0.8);
+        }
 }
 
 @media screen and (max-width: 768px) {
+    .careerHistory__card .card::before {
+        width: 47px;
+    }
+
+    .careerHistory__card .card::after {
+        width: 85px;
+    }
 
     .careerHistory__card::after,
     .careerHistory__card::before {
@@ -283,15 +298,24 @@ a.active {
 }
 
 @media screen and (max-width: 540px) {
-    .card {
-        width: 100% !important;
-        margin-inline-start: 0 !important;
+    .careerHistory__card .card::before {
+        width: 26px;
     }
 
-    .card::after,
-    .card::before {
-        width: 50px !important;
+    .careerHistory__card .card::after {
+        width: 55px;
     }
+
+    .careerHistory__card {
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+
+    .card {
+        width: 100% !important;
+        margin-inline-start: 10px !important;
+    }
+
 
     .card .careerHistory__card_img {
         top: -20% !important;
@@ -301,7 +325,7 @@ a.active {
     }
 
     .card .careerHistory__card_desc {
-        inset-inline-start: 2% !important;
+        inset-inline-start: 3% !important;
     }
 
     .EndOfDate {
