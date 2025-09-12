@@ -19,7 +19,7 @@ const CertificatesView = ({ certificates }: CertificatesViewProps) => {
     <div className="pt-5 container mx-auto px-4">
       <TitlePage title="Certificates" />
 
-      <div className="flex flex-wrap justify-center md:justify-start md:gap-x-19 xl:gap-x-12 gap-8 mt-8 mb-8">
+      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3 place-items-center">
         {certificates.map((cert) => (
           <CertificateCard
             key={cert.id}

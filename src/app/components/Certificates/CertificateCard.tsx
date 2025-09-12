@@ -32,7 +32,7 @@ const CertificateCard = ({ certificate, onSelect }: CertificateCardProps) => {
       </motion.div>
       <motion.h3
         layoutId={`card-title-${certificate.id}`} // Unique ID for the title animation
-        className="text-lg font-semibold text-gray-200 h-12 flex items-center"
+        className="text-lg font-semibold text-gray-200  flex items-center"
       >
         {certificate.title_en}
       </motion.h3>
