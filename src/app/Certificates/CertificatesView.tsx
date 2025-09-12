@@ -22,7 +22,7 @@ const CertificatesView = ({ certificates }: CertificatesViewProps) => {
       {certificates.length === 0 ? (
         <p className="text-center mt-8 text-gray-400">No certificates found.</p>
       ) : (
-        <div className="grid grid-cols-1 gap-8 place-items-center md:grid-cols-2 xl:grid-cols-4 mt-8">
+        <div className="grid grid-cols-1 gap-8 place-items-center md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 mt-8">
           {certificates.map((cert) => (
             <CertificateCard
               key={cert.id}

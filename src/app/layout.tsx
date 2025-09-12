@@ -28,8 +28,8 @@ const sampleProfileData: ProfileData = {
   name: " Abolfazl Saeidabadi",
   title: " Frontend Developer",
   email: "asaeidabadi243@gmail.com",
-  imageUrl: "/images/Me.png",
-  cvUrl: "/path/to/your-cv.pdf", // مسیر فایل رزومه خود را قرار دهید
+  imageUrl: "/images/Me.jpg",
+  cvUrl: "/documents/AbolfazlSaeidabadi-cv.pdf", // مسیر فایل رزومه خود را قرار دهید
 };
 export default async function RootLayout({
   children,
@@ -58,7 +58,7 @@ export default async function RootLayout({
               <Middlenav />
               <div className=" border-2 border-primary rounded-2xl p-4">
                 {children}
-                <ScrollToTopButton/>
+                <ScrollToTopButton />
               </div>
             </div>
           </main>
