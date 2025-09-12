@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ThemeSwitcher } from "./ThemeSwitcher";
-import LanguageSwitcher from "./LanguageSwitcher";
 import Image from "next/image";
 
 const Navbar = () => {
@@ -23,7 +22,6 @@ const Navbar = () => {
       </div>
       {/* buttons section */}
       <div className="flex items-center gap-4">
-        {/* <LanguageSwitcher /> */}
         <ThemeSwitcher />
       </div>
     </nav>
