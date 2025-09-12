@@ -2,6 +2,7 @@ import Image from "next/image";
 import { FileDown, Mail } from "lucide-react";
 import type { ProfileData } from "@/types"; // مسیر فایل types.ts خود را وارد کنید
 import SocialMedia from "./shared/SocialMedia"; // مسیر کامپوننت خود را چک کنید
+import DownloadCVButton from "./shared/DownloadCVButton";
 
 type HeroSectionProps = {
   profileData: ProfileData;
@@ -44,14 +45,7 @@ export default function HeroSection({ profileData }: HeroSectionProps) {
             <Mail size={16} />
             {email}
           </a>
-          <a
-            href="#" // مسیر صحیح فایل CV خود را وارد کنید
-            download="/documents/AbolfazlSaeidabadi-CV.pdf" // استفاده از تگ <a> برای دانلود که صحیح‌تر است
-            className="flex justify-center items-center gap-2 rounded-lg bg-[var(--border)] px-4 py-3 font-semibold text-cyan-400 transition-opacity hover:opacity-90"
-          >
-            <FileDown size={18} />
-            Download CV
-          </a>
+          <DownloadCVButton cvUrl="/documents/AbolfazlSaeidabadi-CV.pdf" />
         </div>
       </div>
     </div>
