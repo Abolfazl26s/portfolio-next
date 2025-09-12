@@ -1,4 +1,4 @@
-import "../components/ShapeMonitor/shape.css"; // We still need the custom CSS for the shape
+import "../components/shape.css"; // We still need the custom CSS for the shape
 
 const ShapeMonitorSkeleton = () => {
   return (

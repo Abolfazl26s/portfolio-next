@@ -1,8 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import "./shape.css";
 import { ShapeMonitorProps } from "@/types";
 import { CalendarClock } from "lucide-react";
+import "./shape.css";
 
 export default function ShapeMonitor({
   imgSrc,
