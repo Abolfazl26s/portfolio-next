@@ -1,46 +1,18 @@
 import { Metadata } from "next";
 import CertificatesView from "./CertificatesView";
-import { ICertificate } from "@/types"; // ICertificate را import کنید
+import { getCertificates } from "@/lib/data-service"; // Import from your data service
 
 export const metadata: Metadata = {
   title: "Portfolio | Certificates",
-  description: "A list of my Certificates.",
+  description: "A list of my academic and professional certificates.",
 };
 
-// تابع برای دریافت داده‌ها
-async function fetchCertificates(): Promise<ICertificate[]> {
-  const API_URL = process.env.API_URL;
-
-  if (!API_URL) {
-    console.error("API_URL is not defined in environment variables.");
-    return []; // همیشه یک آرایه برگردانید تا برنامه کرش نکند
-  }
-
-  try {
-    const response = await fetch(API_URL, {
-      // این بخش باعث می‌شود داده‌ها کش شوند و هر ۱ ساعت یکبار به‌روز شوند (ISR)
-      next: { revalidate: 3600 },
-    });
-
-    if (!response.ok) {
-      console.error("Failed to fetch certificates:", response.statusText);
-      return [];
-    }
-
-    const data = await response.json();
-    // ساختار پاسخ API خود را اینجا تنظیم کنید
-    return data.certificates || data || [];
-  } catch (error) {
-    console.error("Error fetching certificates:", error);
-    return [];
-  }
-}
-
-// کامپوننت صفحه به یک کامپوننت async تبدیل می‌شود
+// This is a Server Component that fetches data server-side.
 export default async function CertificatesPage() {
-  // داده‌ها در سرور دریافت می‌شوند
-  const certificates = await fetchCertificates();
+  // Fetch data on the server using the centralized service.
+  // This is extremely fast and benefits from server-side caching.
+  const certificates = await getCertificates();
 
-  // داده‌های دریافت شده به عنوان prop به کامپوننت کلاینت پاس داده می‌شوند
+  // Pass the fetched data as a prop to the Client Component.
   return <CertificatesView certificates={certificates} />;
 }

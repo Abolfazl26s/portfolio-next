@@ -6,7 +6,7 @@ const ShapeMonitorSkeleton = () => {
       {/* Container for the monitor shape and skeleton image */}
       <div className="shapeMonitor scale-75">
         {/* Skeleton for the image */}
-        <div className="w-[250px] h-[200px] bg-gray-300 dark:bg-gray-700 animate-pulse" />
+        <div className="w-[300px] h-[200px] bg-gray-300 dark:bg-gray-700 animate-pulse" />
         <div className="specker"></div>
       </div>
 

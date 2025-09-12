@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useRef, useEffect } from "react";
 import { usePaginatedFetch } from "@/hooks/usePaginatedFetch";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { Project, ProjectsApiResponse } from "@/types"; // 1. Import the new type
+import { Project, ProjectsApiResponse } from "@/types"; // ProjectsApiResponse را import کنید
 import TitlePage from "@/app/components/shared/TitlePage";
 import ShapeMonitor from "../components/ShapeMonitor/page";
 import Pagination from "../components/Pagination/page";
@@ -21,13 +21,21 @@ const ProjectsView = () => {
   const topOfPageRef = useRef<HTMLDivElement>(null);
   const isInitialMount = useRef(true);
 
-  // 2. Use the new, specific type instead of 'any'
-  const extractProjects = useCallback(
-    (data: ProjectsApiResponse): Project[] => {
-      return data?.projectTemplate || [];
-    },
-    []
-  );
+  // The function now accepts 'unknown' and validates the data inside.
+  const extractProjects = useCallback((data: unknown): Project[] => {
+    // This is a type guard to ensure the data has the expected shape.
+    if (
+      data &&
+      typeof data === "object" &&
+      "projectTemplate" in data &&
+      Array.isArray((data as ProjectsApiResponse).projectTemplate)
+    ) {
+      // Only after the check passes, we treat it as ProjectsApiResponse.
+      return (data as ProjectsApiResponse).projectTemplate;
+    }
+    // If the data is not in the expected format, return an empty array.
+    return [];
+  }, []);
 
   const {
     currentItems,
@@ -76,7 +84,6 @@ const ProjectsView = () => {
           />
         ))}
       </div>
-
       {totalPages > 1 && (
         <Pagination
           currentPage={currentPage}

@@ -1,40 +1,44 @@
 "use client";
 
 import { useState } from "react";
-import TitlePage from "@/app/components/shared/TitlePage"; // Assumed component
-import { ICertificate } from "@/types";
-import CertificateCard from "../components/Certificates/CertificateCard";
-import CertificateModal from "../components/Certificates/CertificateModal";
 import { AnimatePresence } from "framer-motion";
+import { ICertificate } from "@/types";
+import TitlePage from "@/app/components/shared/TitlePage";
+import CertificateCard from "@/app/components/Certificates/CertificateCard";
+import CertificateModal from "@/app/components/Certificates/CertificateModal";
 
+// Define the props structure for this component.
 interface CertificatesViewProps {
   certificates: ICertificate[];
 }
 
 const CertificatesView = ({ certificates }: CertificatesViewProps) => {
-  // State to keep track of the currently selected certificate for the modal
   const [selectedCert, setSelectedCert] = useState<ICertificate | null>(null);
 
   return (
     <div className="pt-5 container mx-auto px-4">
       <TitlePage title="Certificates" />
 
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2 xl:grid-cols-3 place-items-center">
-        {certificates.map((cert) => (
-          <CertificateCard
-            key={cert.id}
-            certificate={cert}
-            onSelect={setSelectedCert} // Pass the state setter to the card
-          />
-        ))}
-      </div>
+      {certificates.length === 0 ? (
+        <p className="text-center mt-8 text-gray-400">No certificates found.</p>
+      ) : (
+        <div className="grid grid-cols-1 gap-8 place-items-center md:grid-cols-2 xl:grid-cols-4 mt-8">
+          {certificates.map((cert) => (
+            <CertificateCard
+              key={cert.id}
+              certificate={cert}
+              onSelect={setSelectedCert}
+            />
+          ))}
+        </div>
+      )}
 
-      {/* AnimatePresence handles the animation of components when they are removed from the DOM */}
+      {/* AnimatePresence handles the modal's exit animation. */}
       <AnimatePresence>
         {selectedCert && (
           <CertificateModal
             certificate={selectedCert}
-            onClose={() => setSelectedCert(null)} // Function to close the modal
+            onClose={() => setSelectedCert(null)}
           />
         )}
       </AnimatePresence>
