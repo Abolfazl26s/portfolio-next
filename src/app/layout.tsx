@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google";
 
 import { Providers } from "./providers";
-import type { Locale } from "../types";
 import Navbar from "./components/shared/Navbar";
 import Middlenav from "./components/shared/Middlenav";
 import HeroSection from "./components/HeroSection";
@@ -31,22 +30,17 @@ const sampleProfileData: ProfileData = {
 };
 export default async function RootLayout({
   children,
-  params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: Locale }; // استفاده از تایپ
 }) {
-  // const messages = await getMessages();
-
   return (
     <html
-      lang={locale}
-      dir={locale === "fa" ? "rtl" : "ltr"}
+      lang="en"
+      dir="ltr"
       suppressHydrationWarning={true}
       className={`${poppins.className} dark:bg-[var(--background)] bg-[var(--background)]`}
     >
       <body className=" container mr-auto ml-auto  text-[var(--foreground)] transition-colors duration-300">
-        
         <Providers>
           <Navbar />
           <main className="pt-25 md:pt-10 xl:pt-40 flex-col xl:flex items-start justify-center xl:justify-around xl:gap-6 px-2 md:px-6 xl:px-0 space-y-4 mb-4 text-[var(--primary)] dark:text-[var(--primary)]  min-h-screen">
