@@ -18,7 +18,6 @@ export default function Middlenav() {
   useEffect(() => {
     setIsOpen(false);
   }, [pathName]);
-
   return (
     <div className="fixed xl:relative top-24 lg:top-32 xl:top-0 rounded-bl-lg rounded-tl-lg z-50 right-0 text-[var(--primary)] dark:text-[var(--primary)] dark:bg-[var(--border)] bg-[var(--background)]  xl:dark:bg-[var(--background)]">
       {/* Tablet & Desktop Navigation Container */}
@@ -33,7 +32,7 @@ export default function Middlenav() {
               key={item.name}
               href={item.href}
               className={`
-                ${pathName === item.href ? "bg-gray-100 dark:bg-gray-700" : ""}
+                ${pathName === item.href ? "active" : ""}
                 flex items-center justify-center px-4 py-2 lg:px-8 lg:py-4 text-sm font-medium
                 text-gray-900 bg-white rounded-lg hover:bg-gray-100 dark:bg-gray-800
                 dark:hover:bg-gray-700 dark:text-white hover:scale-105
@@ -66,12 +65,12 @@ export default function Middlenav() {
                 key={item.name}
                 href={item.href}
                 className={`
-                  ${
-                    pathName === item.href ? "bg-gray-100 dark:bg-gray-700" : ""
-                  }
+                  ${pathName === item.href ? "active" : ""}
+                    
                   flex items-center px-4 py-3 text-sm font-medium
                   text-gray-900 bg-white rounded-lg hover:bg-gray-100 dark:bg-gray-800
                   dark:hover:bg-gray-700 dark:text-white
+                  ${pathName === item.href ? "active" : ""}
                 `}
               >
                 <item.icon className="w-4 h-4 mr-2" />
