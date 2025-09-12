@@ -73,7 +73,7 @@ const ProjectsView = () => {
   return (
     <div ref={topOfPageRef} className="pt-5 container mx-auto px-4">
       <TitlePage title={title} />
-      <div className="grid grid-cols-1 gap-8 place-items-center md:grid-cols-2 xl:grid-cols-3 mt-8">
+      <div className="grid grid-cols-1 gap-8 place-items-center md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4 mt-8">
         {currentItems.map((project) => (
           <ShapeMonitor
             key={project.id}

@@ -34,7 +34,7 @@ const DownloadCVButton = ({ cvUrl }: DownloadCVButtonProps) => {
     <button
       onClick={handleDownload}
       disabled={isLoading} // دکمه در حالت لودینگ غیرفعال می‌شود
-      className="flex justify-center items-center gap-2 rounded-lg bg-[var(--border)] px-4 py-3 font-semibold text-cyan-400 transition-all hover:opacity-90 w-full disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
+      className="flex justify-center items-center gap-2 rounded-lg bg-[var(--border)] px-4 py-3 font-semibold text-[var(--primary)] transition-all hover:opacity-90 w-full disabled:opacity-70 disabled:cursor-not-allowed cursor-pointer"
     >
       {isLoading ? (
         <>

@@ -33,7 +33,7 @@ export default function ShapeMonitor({
         </div>
 
         {/* Text content for the card. */}
-        <div className="mt-18 text-center text-cyan-400">
+        <div className="mt-18 text-center text-[var(--primary)]">
           {/* Using h2 for a card title is better for HTML semantics than h1. */}
           <h4 className="mb-3 text-md font-bold">{projectName}</h4>
           <p className="text-sm text-[var(--muted-foreground)] flex items-center justify-center gap-2">

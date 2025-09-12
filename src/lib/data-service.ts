@@ -46,7 +46,8 @@ async function getDbData() {
 export async function getProjects(): Promise<Project[]> {
   const data = await getDbData();
   // The key for projects in your JSON is 'projectTemplate'
-  return data?.projectTemplate || [];
+  const projects = data?.projectTemplate || [];
+  return [...projects].reverse();
 }
 
 export async function getSkills(): Promise<Skill[]> {

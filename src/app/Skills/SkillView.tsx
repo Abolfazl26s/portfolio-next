@@ -18,7 +18,7 @@ const SkillsView = ({ categorizedSkills }: SkillsViewProps) => {
         {categorizedSkills.length > 0 ? (
           categorizedSkills.map((category) => (
             <div key={category.title}>
-              <h3 className="text-2xl font-bold text-cyan-400 mb-6 text-center sm:text-left">
+              <h3 className="text-2xl font-bold text-[var(--primary)] mb-6 text-center sm:text-left">
                 {category.title}
               </h3>
               <div className="flex flex-wrap justify-around md:justify-start gap-5 w-full">

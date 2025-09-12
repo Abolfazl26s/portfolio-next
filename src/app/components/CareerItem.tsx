@@ -63,7 +63,7 @@ const CareerHistory = () => {
                 {item.EndDateOfCooperation_en}
               </p>
             </div>
-            <h1 className="EndOfDate text-cyan-400">{item.id}</h1>
+            <h1 className="EndOfDate text-[var(--primary)]">{item.id}</h1>
           </div>
         </div>
       ))}
