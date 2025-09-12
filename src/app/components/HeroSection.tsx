@@ -45,8 +45,8 @@ export default function HeroSection({ profileData }: HeroSectionProps) {
             {email}
           </a>
           <a
-            href={cvUrl} // مسیر صحیح فایل CV خود را وارد کنید
-            download // استفاده از تگ <a> برای دانلود که صحیح‌تر است
+            href="#" // مسیر صحیح فایل CV خود را وارد کنید
+            download="/documents/AbolfazlSaeidabadi-CV.pdf" // استفاده از تگ <a> برای دانلود که صحیح‌تر است
             className="flex justify-center items-center gap-2 rounded-lg bg-[var(--border)] px-4 py-3 font-semibold text-cyan-400 transition-opacity hover:opacity-90"
           >
             <FileDown size={18} />
