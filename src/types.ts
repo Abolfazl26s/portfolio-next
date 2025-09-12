@@ -32,6 +32,9 @@ export interface ShapeMonitorProps {
   time: string;
   link: string;
 }
+export interface ProjectsApiResponse {
+  projectTemplate: Project[];
+}
 export interface Skill {
   id: number | string;
   name_en: string;

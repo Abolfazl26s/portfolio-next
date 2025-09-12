@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import SkillsView from "./SkillView";
+import { getSkills } from "@/lib/data-service";
 import { Skill, SkillCategory } from "@/types";
 
 export const metadata: Metadata = {
@@ -7,51 +8,28 @@ export const metadata: Metadata = {
   description: "A list of my Skills.",
 };
 
-// This function fetches and categorizes skills on the server
+// This logic now runs on the server using the fast data service
 async function getCategorizedSkills(): Promise<SkillCategory[]> {
-  const API_URL = process.env.API_URL;
-  if (!API_URL) return [];
+  const skills = await getSkills();
+  if (!skills || skills.length === 0) return [];
 
-  try {
-    const response = await fetch(API_URL, { next: { revalidate: 3600 } });
-    if (!response.ok) return [];
+  const categories: { [key: string]: string[] } = {
+      'Frontend Development': ['html', 'css', 'bootstrap', 'javascript', 'jquery', 'react', 'redux'],
+      'Backend & Database': ['node', 'express', 'mongodb'],
+      'Design & UI/UX': ['figma', 'xd', 'photoshop'],
+      'Tools & Others': ['github', 'wordpress', 'pc assembly'],
+  };
 
-    const data = await response.json();
-    const skills: Skill[] = data.skills || [];
-
-    // Define categories
-    const categories: { [key: string]: string[] } = {
-      "Frontend Development": [
-        "html",
-        "css",
-        "bootstrap",
-        "javascript",
-        "jquery",
-        "react",
-        "redux",
-      ],
-      "Backend & Database": ["node", "express", "mongodb"],
-      "Design & UI/UX": ["figma", "xd", "photoshop"],
-      "Tools & Others": ["github", "wordpress", "pc assembly"],
-    };
-
-    // Group skills into categories
-    const categorizedSkills = Object.keys(categories)
-      .map((title) => ({
-        title,
-        skills: skills.filter((skill) =>
-          categories[title].some((catSkill) =>
-            skill.name_en.toLowerCase().includes(catSkill)
+  const categorizedSkills = Object.keys(categories).map(title => ({
+      title,
+      skills: skills.filter(skill => 
+          categories[title].some(catSkill => 
+              skill.name_en.toLowerCase().includes(catSkill)
           )
-        ),
-      }))
-      .filter((category) => category.skills.length > 0); // Only return categories that have skills
+      ),
+  })).filter(category => category.skills.length > 0);
 
-    return categorizedSkills;
-  } catch (error) {
-    console.error("Failed to fetch or categorize skills:", error);
-    return [];
-  }
+  return categorizedSkills;
 }
 
 // This is a Server Component
