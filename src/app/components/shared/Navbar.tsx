@@ -11,15 +11,9 @@ const Navbar = () => {
           href="/"
           className="text-2xl font-bold hover:underline flex gap-2 items-center"
         >
-          <Image
-            alt="Abolfazl Saeidabadi"
-            src="/images/MyLogo.png"
-            width={40}
-            height={40}
-          />
           Wellcome
         </Link>
-      </div>   
+      </div>
       {/* buttons section */}
       <div className="flex items-center gap-4">
         <ThemeSwitcher />
