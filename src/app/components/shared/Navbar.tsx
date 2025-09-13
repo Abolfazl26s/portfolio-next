@@ -19,7 +19,7 @@ const Navbar = () => {
           />
           Wellcome
         </Link>
-      </div>
+      </div>   
       {/* buttons section */}
       <div className="flex items-center gap-4">
         <ThemeSwitcher />
