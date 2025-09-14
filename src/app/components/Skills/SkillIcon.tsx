@@ -7,7 +7,7 @@ import {
   FaGithub,
   FaFigma,
   FaNodeJs,
-} from "react-icons/fa6"; 
+} from "react-icons/fa6";
 import {
   SiJavascript,
   SiRedux,
@@ -18,6 +18,7 @@ import { VscTerminalCmd } from "react-icons/vsc";
 import { LuWrench } from "react-icons/lu";
 import { DiJqueryLogo } from "react-icons/di";
 import { TbBrandAdobeXd, TbBrandAdobePhotoshop } from "react-icons/tb";
+import { SiTypescript } from "react-icons/si";
 
 // A component that renders the specific brand icon for each skill
 const SkillIcon = ({ name, size = 48 }: { name: string; size?: number }) => {
@@ -43,6 +44,8 @@ const SkillIcon = ({ name, size = 48 }: { name: string; size?: number }) => {
       return <FaReact {...iconProps} color="#61DAFB" />;
     case normalizedName.includes("redux"):
       return <SiRedux {...iconProps} color="#764ABC" />;
+    case normalizedName.includes("typescript"):
+      return <SiTypescript {...iconProps} color="#61DAFB" />;
 
     // Backend
     case normalizedName.includes("node"):

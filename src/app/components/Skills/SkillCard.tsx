@@ -3,6 +3,7 @@ import SkillIcon from "@/app/components/Skills/SkillIcon";
 import { motion } from "framer-motion";
 
 const SkillCard = ({ skill }: { skill: Skill }) => {
+ 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

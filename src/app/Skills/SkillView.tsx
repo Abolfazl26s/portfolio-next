@@ -10,6 +10,7 @@ interface SkillsViewProps {
 }
 
 const SkillsView = ({ categorizedSkills }: SkillsViewProps) => {
+  console.log(categorizedSkills);
   return (
     <div className="pt-5">
       <TitlePage title="My Skills" />

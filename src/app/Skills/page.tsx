@@ -14,20 +14,31 @@ async function getCategorizedSkills(): Promise<SkillCategory[]> {
   if (!skills || skills.length === 0) return [];
 
   const categories: { [key: string]: string[] } = {
-      'Frontend Development': ['html', 'css', 'bootstrap', 'javascript', 'jquery', 'react', 'redux'],
-      'Backend & Database': ['node', 'express', 'mongodb'],
-      'Design & UI/UX': ['figma', 'xd', 'photoshop'],
-      'Tools & Others': ['github', 'wordpress', 'pc assembly'],
+    "Frontend Development": [
+      "html",
+      "css",
+      "bootstrap",
+      "javascript",
+      "jquery",
+      "react",
+      "redux",
+      "typescript",
+    ],
+    "Backend & Database": ["node", "express", "mongodb"],
+    "Design & UI/UX": ["figma", "xd", "photoshop"],
+    "Tools & Others": ["github", "wordpress", "pc assembly"],
   };
 
-  const categorizedSkills = Object.keys(categories).map(title => ({
+  const categorizedSkills = Object.keys(categories)
+    .map((title) => ({
       title,
-      skills: skills.filter(skill => 
-          categories[title].some(catSkill => 
-              skill.name_en.toLowerCase().includes(catSkill)
-          )
+      skills: skills.filter((skill) =>
+        categories[title].some((catSkill) =>
+          skill.name_en.toLowerCase().includes(catSkill)
+        )
       ),
-  })).filter(category => category.skills.length > 0);
+    }))
+    .filter((category) => category.skills.length > 0);
 
   return categorizedSkills;
 }
