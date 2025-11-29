@@ -1,14 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 
 // A lightweight top progress bar that appears after an internal link click
 // and hides when navigation completes (pathname/search changes).
 const RouteProgress = () => {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
   const [isActive, setIsActive] = useState(false);
 
   // Start the indicator when the user clicks an internal link that changes the route.
@@ -35,13 +34,13 @@ const RouteProgress = () => {
     return () => document.removeEventListener("click", handleClick, true);
   }, []);
 
-  // Stop the indicator when the route finishes changing.
+  // Stop the indicator when the route finishes changing (path update).
   useEffect(() => {
     if (isActive) {
       const timeout = setTimeout(() => setIsActive(false), 200);
       return () => clearTimeout(timeout);
     }
-  }, [pathname, searchParams, isActive]);
+  }, [pathname, isActive]);
 
   // Safety: auto-hide if something goes wrong (prevents a stuck bar).
   useEffect(() => {
