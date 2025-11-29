@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import SkillsView from "./SkillView";
 import { getSkills } from "@/lib/data-service";
-import { Skill, SkillCategory } from "@/types";
+import { SkillCategory } from "@/types";
 
 export const metadata: Metadata = {
   title: "Portfolio | Skills",

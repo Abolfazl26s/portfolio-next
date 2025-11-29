@@ -8,12 +8,7 @@ import {
   FaFigma,
   FaNodeJs,
 } from "react-icons/fa6";
-import {
-  SiJavascript,
-  SiRedux,
-  SiExpress,
-  SiMongodb,
-} from "@icons-pack/react-simple-icons";
+import { SiJavascript, SiRedux, SiMongodb } from "@icons-pack/react-simple-icons";
 import { VscTerminalCmd } from "react-icons/vsc";
 import { LuWrench } from "react-icons/lu";
 import { DiJqueryLogo } from "react-icons/di";

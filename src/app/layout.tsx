@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import { Poppins } from "next/font/google";
+import { Suspense } from "react";
 
 import { Providers } from "./providers";
 import Navbar from "./components/shared/Navbar";
@@ -10,8 +10,6 @@ import type { ProfileData } from "@/types";
 import "./globals.css";
 import RouteProgress from "./components/shared/RouteProgress";
 import ScrollToTopButton from "./components/shared/ScrollToTopButton";
-
-const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"], // 400: regular, 500: medium, 600: semi-bold, 700: bold
@@ -43,7 +41,9 @@ export default async function RootLayout({
     >
       <body className=" container mr-auto ml-auto  text-[var(--foreground)] transition-colors duration-300">
         <Providers>
-          <RouteProgress />
+          <Suspense fallback={null}>
+            <RouteProgress />
+          </Suspense>
           <Navbar />
           <main className="pt-25 md:pt-10 xl:pt-40 flex-col xl:flex items-start justify-center xl:justify-around xl:gap-6 px-2 md:px-6 xl:px-0 space-y-4 mb-4 text-[var(--primary)] dark:text-[var(--primary)]  min-h-screen">
             <HeroSection profileData={sampleProfileData} />
