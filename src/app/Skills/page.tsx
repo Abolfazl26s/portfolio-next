@@ -19,6 +19,7 @@ async function getCategorizedSkills(): Promise<SkillCategory[]> {
       "css",
       "bootstrap",
       "javascript",
+      "vanilla",
       "jquery",
       "react",
       "redux",

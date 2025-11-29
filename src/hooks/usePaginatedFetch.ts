@@ -66,6 +66,14 @@ export function usePaginatedFetch<T>(
     [allItems, itemsPerPage]
   );
 
+  useEffect(() => {
+    setCurrentPage((prevPage) => {
+      const safeTotalPages = totalPages || 1;
+      const nextPage = Math.min(prevPage, safeTotalPages);
+      return nextPage === prevPage ? prevPage : nextPage;
+    });
+  }, [totalPages]);
+
   const currentItems = useMemo(() => {
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;

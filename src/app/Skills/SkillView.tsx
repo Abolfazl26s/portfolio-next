@@ -3,14 +3,12 @@
 import TitlePage from "@/app/components/shared/TitlePage";
 import { SkillCategory } from "@/types";
 import SkillCard from "../components/Skills/SkillCard";
-import { h1 } from "framer-motion/client";
 
 interface SkillsViewProps {
   categorizedSkills: SkillCategory[];
 }
 
 const SkillsView = ({ categorizedSkills }: SkillsViewProps) => {
-  console.log(categorizedSkills);
   return (
     <div className="pt-5">
       <TitlePage title="My Skills" />

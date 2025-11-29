@@ -31,10 +31,14 @@ const socials = [
 ];
 
 export default function SocialMedia() {
+  const validSocials = socials.filter(
+    (social) => social.href && social.href !== "#!"
+  );
+
   return (
     <div className="flex items-center justify-center md:justify-start gap-2 xl:justify-center
     ">
-      {socials.map((social) => (
+      {validSocials.map((social) => (
         <Link
           key={social.name}
           href={social.href}

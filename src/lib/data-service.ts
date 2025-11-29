@@ -14,48 +14,56 @@ interface DbData {
   certificates?: ICertificate[];
 }
 
-let cachedData: DbData | null = null;
+const CACHE_TTL_MS = 1000 * 60 * 60; // 1 hour
+let cachedData: { data: DbData; fetchedAt: number } | null = null;
 
 // This function fetches data and caches it to avoid repeated external calls.
 async function getDbData() {
   if (cachedData) {
-    return cachedData;
-  }
-  try {
-    const response = await fetch(EXTERNAL_API_URL, {
-      // This tells Next.js to cache the data for 1 hour.
-      // After 1 hour, the next request will re-fetch it in the background.
-      next: { revalidate: 3600 },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Failed to fetch data from ${EXTERNAL_API_URL}`);
+    const isFresh = Date.now() - cachedData.fetchedAt < CACHE_TTL_MS;
+    if (isFresh) {
+      return cachedData.data;
     }
-
-    cachedData = await response.json();
-    return cachedData;
-  } catch (error) {
-    console.error("Data fetching error in data-service:", error);
-    // On error, we return null to prevent crashes and allow graceful failure.
-    return null;
   }
+
+  const response = await fetch(EXTERNAL_API_URL, {
+    // This tells Next.js to cache the data for 1 hour.
+    // After 1 hour, the next request will re-fetch it in the background.
+    next: { revalidate: 3600 },
+  });
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch data from ${EXTERNAL_API_URL}`);
+  }
+
+  const data: DbData = await response.json();
+  cachedData = { data, fetchedAt: Date.now() };
+  return data;
 }
 
 // --- Service Functions for each data type ---
 
 export async function getProjects(): Promise<Project[]> {
   const data = await getDbData();
-  // The key for projects in your JSON is 'projectTemplate'
-  const projects = data?.projectTemplate || [];
+  if (!data) {
+    throw new Error("No project data available");
+  }
+  const projects = data.projectTemplate || [];
   return [...projects].reverse();
 }
 
 export async function getSkills(): Promise<Skill[]> {
   const data = await getDbData();
-  return data?.skills || [];
+  if (!data) {
+    throw new Error("No skills data available");
+  }
+  return data.skills || [];
 }
 
 export async function getCertificates(): Promise<ICertificate[]> {
   const data = await getDbData();
-  return data?.certificates || [];
+  if (!data) {
+    throw new Error("No certificates data available");
+  }
+  return data.certificates || [];
 }

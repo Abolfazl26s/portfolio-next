@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 
 // تعریف تایپ برای داده‌ها (فقط فیلدهای مورد نیاز)
 interface CareerItemProps {
-  id: number;
+  id: string | number;
   componyName_en: string;
   jobTitle_en: string;
   CooperationStartDate_en: string;
@@ -48,8 +48,8 @@ const CareerHistory = () => {
             <Image
               src={item.logoSrc}
               alt={item.componyName_en}
-              width="80"
-              height="80"
+              width={80}
+              height={80}
               className="careerHistory__card_img"
             />
 

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { FileDown, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
 import type { ProfileData } from "@/types"; // مسیر فایل types.ts خود را وارد کنید
 import SocialMedia from "./shared/SocialMedia"; // مسیر کامپوننت خود را چک کنید
 import DownloadCVButton from "./shared/DownloadCVButton";
@@ -45,7 +45,7 @@ export default function HeroSection({ profileData }: HeroSectionProps) {
             <Mail size={16} />
             {email}
           </a>
-          <DownloadCVButton cvUrl="/documents/AbolfazlSaeidabadi-CV.pdf" />
+          <DownloadCVButton cvUrl={cvUrl} />
         </div>
       </div>
     </div>

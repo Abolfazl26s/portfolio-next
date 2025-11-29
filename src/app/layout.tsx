@@ -8,6 +8,7 @@ import Middlenav from "./components/shared/Middlenav";
 import HeroSection from "./components/HeroSection";
 import type { ProfileData } from "@/types";
 import "./globals.css";
+import RouteProgress from "./components/shared/RouteProgress";
 import ScrollToTopButton from "./components/shared/ScrollToTopButton";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -26,7 +27,7 @@ const sampleProfileData: ProfileData = {
   title: " Frontend Developer",
   email: "asaeidabadi243@gmail.com",
   imageUrl: "/images/Me.jpg",
-  cvUrl: "/documents/AbolfazlSaeidabadi-cv.pdf", // مسیر فایل رزومه خود را قرار دهید
+  cvUrl: "/documents/AbolfazlSaeidabadi-CV.pdf", // مسیر فایل رزومه خود را قرار دهید
 };
 export default async function RootLayout({
   children,
@@ -42,6 +43,7 @@ export default async function RootLayout({
     >
       <body className=" container mr-auto ml-auto  text-[var(--foreground)] transition-colors duration-300">
         <Providers>
+          <RouteProgress />
           <Navbar />
           <main className="pt-25 md:pt-10 xl:pt-40 flex-col xl:flex items-start justify-center xl:justify-around xl:gap-6 px-2 md:px-6 xl:px-0 space-y-4 mb-4 text-[var(--primary)] dark:text-[var(--primary)]  min-h-screen">
             <HeroSection profileData={sampleProfileData} />

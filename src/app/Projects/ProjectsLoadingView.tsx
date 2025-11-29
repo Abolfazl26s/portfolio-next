@@ -1,5 +1,5 @@
 import TitlePage from "@/app/components/shared/TitlePage";
-import ShapeMonitorSkeleton from "./ShapeMonitorSkeleton.tsx";
+import ShapeMonitorSkeleton from "./ShapeMonitorSkeleton";
 
 const ProjectsLoadingView = () => {
   // We'll render 6 skeletons for a nice grid layout on most screens
