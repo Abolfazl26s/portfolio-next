@@ -35,7 +35,7 @@ export default function Middlenav() {
   };
 
   return (
-    <div className="fixed xl:relative top-24 lg:top-32 xl:top-0 rounded-bl-lg rounded-tl-lg z-50 right-0 text-[var(--primary)] dark:text-[var(--primary)] dark:bg-[var(--border)] bg-[var(--background)]  xl:dark:bg-[var(--background)]">
+    <div className="fixed xl:relative top-24 lg:top-32 xl:top-0 rounded-bl-lg rounded-tl-lg z-50 right-0 text-[var(--primary)] dark:text-[var(--primary)] bg-transparent">
       {/* --- Desktop Navigation (xl breakpoint and up) --- */}
       <div className="hidden lg:flex-col xl:flex  container mx-auto px-4">
         <div className="flex w-full flex-row items-center justify-end gap-4 py-4">

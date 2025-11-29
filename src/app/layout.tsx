@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, Space_Grotesk } from "next/font/google";
 import { Suspense } from "react";
 
 import { Providers } from "./providers";
@@ -13,6 +13,11 @@ import ScrollToTopButton from "./components/shared/ScrollToTopButton";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"], // 400: regular, 500: medium, 600: semi-bold, 700: bold
+});
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-display",
 });
 export const metadata: Metadata = {
   title: "Portfolio",
@@ -37,25 +42,27 @@ export default async function RootLayout({
       lang="en"
       dir="ltr"
       suppressHydrationWarning={true}
-      className={`${poppins.className} dark:bg-[var(--background)] bg-[var(--background)]`}
+      className={`${poppins.className} ${spaceGrotesk.variable} dark:bg-[var(--background)] bg-[var(--background)]`}
     >
-      <body className=" container mr-auto ml-auto  text-[var(--foreground)] transition-colors duration-300">
+      <body className="min-h-screen text-[var(--foreground)] transition-colors duration-300">
         <Providers>
           <Suspense fallback={null}>
             <RouteProgress />
           </Suspense>
-          <Navbar />
-          <main className="pt-25 md:pt-10 xl:pt-40 flex-col xl:flex items-start justify-center xl:justify-around xl:gap-6 px-2 md:px-6 xl:px-0 space-y-4 mb-4 text-[var(--primary)] dark:text-[var(--primary)]  min-h-screen">
-            <HeroSection profileData={sampleProfileData} />
+          <div className="container mx-auto px-2 md:px-6 xl:px-0">
+            <Navbar />
+            <main className="pt-25 md:pt-10 xl:pt-40 flex-col xl:flex items-start justify-center xl:justify-around xl:gap-6 space-y-4 mb-4 text-[var(--primary)] dark:text-[var(--primary)] min-h-screen">
+              <HeroSection profileData={sampleProfileData} />
 
-            <div className="xl:w-3/4 w-full">
-              <Middlenav />
-              <div className=" border-2 border-primary rounded-2xl p-4">
-                {children}
-                <ScrollToTopButton />
+              <div className="xl:w-3/4 w-full">
+                <Middlenav />
+                <div className=" border-2 border-primary rounded-2xl p-4">
+                  {children}
+                  <ScrollToTopButton />
+                </div>
               </div>
-            </div>
-          </main>
+            </main>
+          </div>
         </Providers>
       </body>
     </html>
