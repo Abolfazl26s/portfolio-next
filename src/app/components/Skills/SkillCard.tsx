@@ -4,6 +4,20 @@ import { motion } from "framer-motion";
 
 const SkillCard = ({ skill }: { skill: Skill }) => {
   const level = Number(skill.levelOfSkill) || 0;
+  const normalizedName = skill.name_en.toLowerCase();
+
+  const progressPalette: Record<string, string> = {
+    mysql: "bg-gradient-to-r from-[#00758f] via-[#00618a] to-[#f29111]",
+  };
+
+  const defaultProgress =
+    "bg-gradient-to-r from-[#0ea5e9] via-[#14b8a6] to-[#22c55e]";
+
+  const progressClass =
+    Object.entries(progressPalette).find(([key]) =>
+      normalizedName.includes(key)
+    )?.[1] || defaultProgress;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -18,7 +32,7 @@ const SkillCard = ({ skill }: { skill: Skill }) => {
       <div className="w-full px-4">
         <div className="h-2 w-full rounded-full bg-gray-700 overflow-hidden">
           <div
-            className="h-full bg-gradient-to-r from-cyan-400 via-emerald-400 to-amber-300 rounded-full transition-all duration-500"
+            className={`h-full rounded-full transition-all duration-500 ${progressClass}`}
             style={{ width: `${Math.min(level, 100)}%` }}
           />
         </div>

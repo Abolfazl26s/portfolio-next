@@ -20,7 +20,7 @@ export default function ShapeMonitor({
         className="transition-transform duration-300 dark:hover:text-[var(--foreground)] hover:scale-105 hover:text-[var(--secondary)] group"
       >
         {/* This div contains the monitor-like shape and image. */}
-        <div className="shapeMonitor scale-75 relative overflow-hidden">
+        <div className="shapeMonitor scale-75 relative overflow-visible">
           {/* Using Next.js's Image component for automatic optimization. */}
           <Image
             width={250}

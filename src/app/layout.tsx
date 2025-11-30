@@ -7,9 +7,10 @@ import Navbar from "./components/shared/Navbar";
 import Middlenav from "./components/shared/Middlenav";
 import HeroSection from "./components/HeroSection";
 import type { ProfileData } from "@/types";
-import "./globals.css";
 import RouteProgress from "./components/shared/RouteProgress";
 import ScrollToTopButton from "./components/shared/ScrollToTopButton";
+
+import "./globals.css";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"], // 400: regular, 500: medium, 600: semi-bold, 700: bold
@@ -54,7 +55,7 @@ export default async function RootLayout({
             <main className="pt-25 md:pt-10 xl:pt-40 flex-col xl:flex items-start justify-center xl:justify-around xl:gap-6 space-y-4 mb-4 text-[var(--primary)] dark:text-[var(--primary)] min-h-screen">
               <HeroSection profileData={sampleProfileData} />
 
-              <div className="xl:w-3/4 w-full">
+              <div className="xl:w-3/4 w-full xl:mt-[-120px]">
                 <Middlenav />
                 <div className=" border-2 border-primary rounded-2xl p-4">
                   {children}
