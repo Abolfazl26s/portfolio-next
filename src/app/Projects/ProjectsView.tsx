@@ -4,7 +4,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useRef, useEffect } from "react";
 import { usePaginatedFetch } from "@/hooks/usePaginatedFetch";
 import { useMediaQuery } from "@/hooks/useMediaQuery";
-import { Project, ProjectsApiResponse } from "@/types"; // ProjectsApiResponse را import کنید
+import { Project, ProjectsApiResponse } from "@/types"; 
 import TitlePage from "@/app/components/shared/TitlePage";
 import ShapeMonitor from "../components/ShapeMonitor";
 import Pagination from "../components/shared/Pagination";

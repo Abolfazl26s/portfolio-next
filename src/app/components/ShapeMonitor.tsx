@@ -29,11 +29,15 @@ export default function ShapeMonitor({
             alt={projectName} // Alt text is important for accessibility.
             loading="lazy"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
+          <div className="absolute inset-0 bg-black/35 opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10" />
           <div className="specker"></div>
-          <div className="absolute inset-0 flex flex-col items-center justify-center gap-2 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-            <span className="text-sm font-semibold">View Live</span>
-            <span className="text-xs text-gray-200">Tap to open</span>
+          <div className="pointer-events-none absolute inset-0 z-20 flex items-center justify-center opacity-0 transition-all duration-300 group-hover:opacity-100">
+            <div className="flex translate-y-2 flex-col items-center gap-1 rounded-2xl border border-white/15 bg-black/70 px-5 py-4 text-center text-white shadow-[0_12px_32px_rgba(0,0,0,0.45)] backdrop-blur-sm transition-transform duration-300 group-hover:translate-y-0">
+              <span className="text-base font-bold tracking-wide drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
+                View Live
+              </span>
+              <span className="text-sm text-white/85">Open in new tab</span>
+            </div>
           </div>
         </div>
 
